@@ -1,8 +1,7 @@
 // routes/profileRoute.js
 import express from "express";
 import ProfileController from "../controllers/profileController.js";
-import { authenticate } from "../services/authMiddleware.js";
-
+import { authenticate } from "../auth/authMiddleware.js";
 const router = express.Router();
 
 // Public routes

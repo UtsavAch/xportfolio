@@ -1,7 +1,7 @@
 // routes/contactMessageRoute.js
 import express from "express";
 import ContactMessageController from "../controllers/contactMessageController.js";
-import { authenticate } from "../services/authMiddleware.js";
+import { authenticate } from "../auth/authMiddleware.js";
 
 const router = express.Router();
 

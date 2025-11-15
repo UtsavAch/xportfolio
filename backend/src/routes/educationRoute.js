@@ -1,7 +1,7 @@
 // routes/educationRoute.js
 import express from "express";
 import EducationController from "../controllers/educationController.js";
-import { authenticate } from "../services/authMiddleware.js";
+import { authenticate } from "../auth/authMiddleware.js";
 
 const router = express.Router();
 

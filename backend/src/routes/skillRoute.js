@@ -1,7 +1,7 @@
 // routes/skillRoute.js
 import express from "express";
 import SkillController from "../controllers/skillController.js";
-import { authenticate } from "../services/authMiddleware.js";
+import { authenticate } from "../auth/authMiddleware.js";
 
 const router = express.Router();
 

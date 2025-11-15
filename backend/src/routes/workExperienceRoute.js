@@ -1,7 +1,7 @@
 // routes/workExperienceRoute.js
 import express from "express";
 import WorkExperienceController from "../controllers/workExperienceController.js";
-import { authenticate } from "../services/authMiddleware.js";
+import { authenticate } from "../auth/authMiddleware.js";
 
 const router = express.Router();
 

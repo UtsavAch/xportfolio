@@ -1,17 +1,44 @@
 services:
+  db:
+    image: postgres:16
+    container_name: xportfolio_db
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./src/database/schema.sql:/docker-entrypoint-initdb.d/schema.sql:ro
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER}"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
   api:
     build: .
-    command: npm run dev # nodemon live reload
+    container_name: xportfolio_api
+    command: npm run dev
     environment:
-      CMS_USERNAME: utsav
-      CMS_PASSWORD: Uts#portABC123
-      JWT_SECRET: your_jwt_secret_key #Need to be same as in .env
-      JWT_EXPIRES_IN: 1h
-      DATABASE_URL: ${DATABASE_URL}
-      NODE_ENV: development
-      PORT: 8080
+      CMS_USERNAME: ${CMS_USERNAME}
+      CMS_PASSWORD: ${CMS_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_EXPIRES_IN: ${JWT_EXPIRES_IN}
+      DATABASE_URL: postgres://${DB_USER}:${DB_PASSWORD}@db:5432/${DB_NAME}?sslmode=disable
+      NODE_ENV: ${NODE_ENV}
+      PORT: ${PORT}
     volumes:
-      - ./:/app # Sync source code for live reload
-      - /app/node_modules # Prevent overwriting node_modules
+      - ./:/app
+      - /app/node_modules
     ports:
       - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  db_data:

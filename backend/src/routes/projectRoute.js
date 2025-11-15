@@ -1,7 +1,7 @@
 // routes/projectRoute.js
 import express from "express";
 import ProjectController from "../controllers/projectController.js";
-import { authenticate } from "../services/authMiddleware.js";
+import { authenticate } from "../auth/authMiddleware.js";
 
 const router = express.Router();
 

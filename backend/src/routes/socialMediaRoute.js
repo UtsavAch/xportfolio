@@ -1,7 +1,7 @@
 // routes/socialMediaRoute.js
 import express from "express";
 import SocialMediaController from "../controllers/socialMediaController.js";
-import { authenticate } from "../services/authMiddleware.js";
+import { authenticate } from "../auth/authMiddleware.js";
 
 const router = express.Router();
 
