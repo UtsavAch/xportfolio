@@ -3,8 +3,7 @@ import cors from "cors";
 import path from "path";
 import dotenv from "dotenv";
 import db from "./src/database/db/db.js";
-import usersRoute from "./src/routes/usersRoute.js";
-import messagesRoute from "./src/routes/messagesRoute.js";
+import authRoutes from "./src/auth/authRoutes.js";
 import { fileURLToPath } from "url";
 
 // Fix __dirname in ESM
@@ -27,9 +26,12 @@ app.use(cors());
 
 const port = process.env.PORT;
 
+// Register authentication routes
+app.use("/auth", authRoutes);
+
 // Register API routes
-app.use("/api/users", usersRoute);
-app.use("/api/messages", messagesRoute);
+// app.use("/api/users", usersRoute);
+// app.use("/api/messages", messagesRoute);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
