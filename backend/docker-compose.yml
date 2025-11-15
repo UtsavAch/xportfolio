@@ -3,6 +3,10 @@ services:
     build: .
     command: npm run dev # nodemon live reload
     environment:
+      CMS_USERNAME: utsav
+      CMS_PASSWORD: Uts#portABC123
+      JWT_SECRET: your_jwt_secret_key #Need to be same as in .env
+      JWT_EXPIRES_IN: 1h
       DATABASE_URL: ${DATABASE_URL}
       NODE_ENV: development
       PORT: 8080
