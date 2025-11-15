@@ -3,7 +3,9 @@ import db from "../db/db.js";
 import { SocialMedia } from "../models/models.js";
 
 class SocialMediaRepository {
-  // Get all social media links
+  /** 
+   Get all social media links
+  */
   async getAll() {
     const result = await db.query(
       "SELECT id, icon, url, created_at FROM xportfolio.social_media ORDER BY id"
@@ -13,7 +15,9 @@ class SocialMediaRepository {
     );
   }
 
-  // Get a social media link by ID
+  /**
+   Get a social media link by ID
+  */
   async getById(id) {
     const result = await db.query(
       "SELECT id, icon, url, created_at FROM xportfolio.social_media WHERE id = $1",
@@ -24,7 +28,9 @@ class SocialMediaRepository {
     return new SocialMedia(row.id, row.icon, row.url, row.created_at);
   }
 
-  // Create a new social media link
+  /**
+   Create a new social media link
+  */
   async create(socialMedia) {
     const result = await db.query(
       `INSERT INTO xportfolio.social_media (icon, url)
@@ -36,7 +42,9 @@ class SocialMediaRepository {
     return new SocialMedia(row.id, row.icon, row.url, row.created_at);
   }
 
-  // Update an existing social media link
+  /** 
+   Update an existing social media link
+  */
   async update(id, updates) {
     const result = await db.query(
       `UPDATE xportfolio.social_media
@@ -50,7 +58,9 @@ class SocialMediaRepository {
     return new SocialMedia(row.id, row.icon, row.url, row.created_at);
   }
 
-  // Delete a social media link
+  /** 
+   Delete a social media link
+  */
   async delete(id) {
     const result = await db.query(
       "DELETE FROM xportfolio.social_media WHERE id = $1 RETURNING id, icon, url, created_at",

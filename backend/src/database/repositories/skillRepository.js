@@ -3,7 +3,9 @@ import db from "../db/db.js";
 import { Skill } from "../models/models.js";
 
 class SkillRepository {
-  // Get all skills
+  /** 
+    Get all skills
+  */
   async getAll() {
     const result = await db.query(
       `SELECT id, type, name, created_at
@@ -15,7 +17,9 @@ class SkillRepository {
     );
   }
 
-  // Get skill by ID
+  /** 
+   Get skill by ID
+  */
   async getById(id) {
     const result = await db.query(
       `SELECT id, type, name, created_at
@@ -28,7 +32,9 @@ class SkillRepository {
     return new Skill(row.id, row.type, row.name, row.created_at);
   }
 
-  // Create a new skill
+  /**
+   Create a new skill
+  */
   async create(skill) {
     const result = await db.query(
       `INSERT INTO xportfolio.skills (type, name)
@@ -40,7 +46,9 @@ class SkillRepository {
     return new Skill(row.id, row.type, row.name, row.created_at);
   }
 
-  // Update an existing skill
+  /** 
+   Update an existing skill
+  */
   async update(id, updates) {
     const result = await db.query(
       `UPDATE xportfolio.skills
@@ -54,7 +62,9 @@ class SkillRepository {
     return new Skill(row.id, row.type, row.name, row.created_at);
   }
 
-  // Delete a skill
+  /** 
+   Delete a skill
+  */
   async delete(id) {
     const result = await db.query(
       `DELETE FROM xportfolio.skills

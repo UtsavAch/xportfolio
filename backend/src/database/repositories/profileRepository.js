@@ -5,7 +5,9 @@ import { Profile } from "../models/models.js";
 const PROFILE_ID = "00000000-0000-0000-0000-000000000001"; // single profile ID
 
 class ProfileRepository {
-  // Get profile
+  /**
+   Get profile
+   */
   async getProfile() {
     const result = await db.query(
       `SELECT id, name, title, bio, profile_photo_url, cv_url, phone, whatsapp, location, created_at, updated_at
@@ -32,7 +34,9 @@ class ProfileRepository {
     );
   }
 
-  // Update profile
+  /** 
+   Update profile
+  */
   async updateProfile(updates) {
     const result = await db.query(
       `UPDATE xportfolio.profile

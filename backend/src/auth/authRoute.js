@@ -1,3 +1,4 @@
+// src/auth/authRoute.js
 import express from "express";
 import AuthController from "./authController.js";
 

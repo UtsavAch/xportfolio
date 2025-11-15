@@ -3,7 +3,9 @@ import db from "../db/db.js";
 import { Course } from "../models/models.js";
 
 class CourseRepository {
-  // Get all courses
+  /**
+  Get all courses
+   */
   async getAll() {
     const result = await db.query(
       `SELECT id, title, start_date, end_date, link, description, created_at, updated_at
@@ -25,7 +27,9 @@ class CourseRepository {
     );
   }
 
-  // Get course by ID
+  /** 
+    Get course by ID
+  */
   async getById(id) {
     const result = await db.query(
       `SELECT id, title, start_date, end_date, link, description, created_at, updated_at
@@ -47,7 +51,9 @@ class CourseRepository {
     );
   }
 
-  // Create a new course
+  /** 
+    Create a new course
+  */
   async create(course) {
     const result = await db.query(
       `INSERT INTO xportfolio.courses (title, start_date, end_date, link, description)
@@ -74,7 +80,9 @@ class CourseRepository {
     );
   }
 
-  // Update an existing course
+  /** 
+    Update an existing course
+  */
   async update(id, updates) {
     const result = await db.query(
       `UPDATE xportfolio.courses
@@ -104,7 +112,9 @@ class CourseRepository {
     );
   }
 
-  // Delete a course
+  /** 
+   Delete a course
+  */
   async delete(id) {
     const result = await db.query(
       `DELETE FROM xportfolio.courses

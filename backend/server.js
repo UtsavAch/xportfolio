@@ -17,7 +17,6 @@ import contactMessageRoute from "./src/routes/contactMessageRoute.js";
 
 import { fileURLToPath } from "url";
 
-// Fix __dirname in ESM
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 

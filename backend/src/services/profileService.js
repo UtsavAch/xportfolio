@@ -37,7 +37,7 @@ class ProfileService {
    */
   async updateProfile(updates) {
     try {
-      // Basic validation (optional but recommended)
+      // Basic validation
       if (!updates || typeof updates !== "object") {
         return {
           success: false,

@@ -3,7 +3,9 @@ import db from "../db/db.js";
 import { Project } from "../models/models.js";
 
 class ProjectRepository {
-  // Get all projects
+  /** 
+   Get all projects
+  */
   async getAll() {
     const result = await db.query(
       `SELECT id, title, link, description, video_url, created_at, updated_at
@@ -24,7 +26,9 @@ class ProjectRepository {
     );
   }
 
-  // Get project by ID
+  /** 
+   Get project by ID
+  */
   async getById(id) {
     const result = await db.query(
       `SELECT id, title, link, description, video_url, created_at, updated_at
@@ -45,7 +49,9 @@ class ProjectRepository {
     );
   }
 
-  // Create a new project
+  /** 
+   Create a new project
+  */
   async create(project) {
     const result = await db.query(
       `INSERT INTO xportfolio.projects (title, link, description, video_url)
@@ -65,7 +71,9 @@ class ProjectRepository {
     );
   }
 
-  // Update an existing project
+  /**
+   Update an existing project
+  */
   async update(id, updates) {
     const result = await db.query(
       `UPDATE xportfolio.projects
@@ -87,7 +95,9 @@ class ProjectRepository {
     );
   }
 
-  // Delete a project
+  /** 
+   Delete a project
+  */
   async delete(id) {
     const result = await db.query(
       `DELETE FROM xportfolio.projects

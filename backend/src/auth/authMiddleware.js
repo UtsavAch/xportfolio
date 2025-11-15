@@ -1,3 +1,4 @@
+// src/auth/authMiddleware.js
 import AuthService from "./authService.js";
 
 export const authenticate = (req, res, next) => {

@@ -1,3 +1,4 @@
+// src/auth/authController.js
 import AuthService from "./authService.js";
 
 class AuthController {

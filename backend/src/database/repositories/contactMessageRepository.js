@@ -3,7 +3,9 @@ import db from "../db/db.js";
 import { ContactMessage } from "../models/models.js";
 
 class ContactMessageRepository {
-  // Get all messages
+  /** 
+    Get all messages
+  */
   async getAll() {
     const result = await db.query(
       `SELECT id, sender_name, sender_email, sender_linkedin, message, is_read, created_at
@@ -24,7 +26,9 @@ class ContactMessageRepository {
     );
   }
 
-  // Get message by ID
+  /**
+    Get message by ID
+  */
   async getById(id) {
     const result = await db.query(
       `SELECT id, sender_name, sender_email, sender_linkedin, message, is_read, created_at
@@ -45,7 +49,9 @@ class ContactMessageRepository {
     );
   }
 
-  // Create a new contact message
+  /** 
+   Create a new contact message
+  */
   async create(message) {
     const result = await db.query(
       `INSERT INTO xportfolio.contact_messages (sender_name, sender_email, sender_linkedin, message)
@@ -70,7 +76,9 @@ class ContactMessageRepository {
     );
   }
 
-  // Mark message as read
+  /** 
+  Mark message as read
+  */
   async markAsRead(id) {
     const result = await db.query(
       `UPDATE xportfolio.contact_messages
@@ -92,7 +100,9 @@ class ContactMessageRepository {
     );
   }
 
-  // Delete a message
+  /**
+   Delete a message
+  */
   async delete(id) {
     const result = await db.query(
       `DELETE FROM xportfolio.contact_messages

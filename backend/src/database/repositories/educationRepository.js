@@ -3,7 +3,9 @@ import db from "../db/db.js";
 import { Education } from "../models/models.js";
 
 class EducationRepository {
-  // Get all education entries
+  /** 
+   Get all education entries
+  */
   async getAll() {
     const result = await db.query(
       `SELECT id, degree, university, start_date, end_date, description, created_at, updated_at
@@ -25,7 +27,9 @@ class EducationRepository {
     );
   }
 
-  // Get a single education entry by ID
+  /**  
+   Get a single education entry by ID
+  */
   async getById(id) {
     const result = await db.query(
       `SELECT id, degree, university, start_date, end_date, description, created_at, updated_at
@@ -47,7 +51,9 @@ class EducationRepository {
     );
   }
 
-  // Create a new education entry
+  /**
+   Create a new education entry
+  */
   async create(education) {
     const result = await db.query(
       `INSERT INTO xportfolio.education (degree, university, start_date, end_date, description)
@@ -74,7 +80,9 @@ class EducationRepository {
     );
   }
 
-  // Update an existing education entry
+  /**
+   Update an existing education entry
+  */
   async update(id, updates) {
     const result = await db.query(
       `UPDATE xportfolio.education
@@ -104,7 +112,9 @@ class EducationRepository {
     );
   }
 
-  // Delete an education entry
+  /**
+   Delete an education entry
+   */
   async delete(id) {
     const result = await db.query(
       `DELETE FROM xportfolio.education

@@ -3,7 +3,9 @@ import db from "../db/db.js";
 import { WorkExperience } from "../models/models.js";
 
 class WorkExperienceRepository {
-  // Get all work experiences
+  /**
+   Get all work experiences
+  */
   async getAll() {
     const result = await db.query(
       `SELECT id, position, company, location, start_date, end_date, description, created_at, updated_at
@@ -26,7 +28,9 @@ class WorkExperienceRepository {
     );
   }
 
-  // Get a single work experience by ID
+  /** 
+   Get a single work experience by ID
+  */
   async getById(id) {
     const result = await db.query(
       `SELECT id, position, company, location, start_date, end_date, description, created_at, updated_at
@@ -49,7 +53,9 @@ class WorkExperienceRepository {
     );
   }
 
-  // Create a new work experience
+  /** 
+   Create a new work experience
+  */
   async create(workExp) {
     const result = await db.query(
       `INSERT INTO xportfolio.work_experience (position, company, location, start_date, end_date, description)
@@ -78,7 +84,9 @@ class WorkExperienceRepository {
     );
   }
 
-  // Update an existing work experience
+  /** 
+   Update an existing work experience
+  */
   async update(id, updates) {
     const result = await db.query(
       `UPDATE xportfolio.work_experience
@@ -110,7 +118,9 @@ class WorkExperienceRepository {
     );
   }
 
-  // Delete a work experience
+  /**
+   Delete a work experience
+  */
   async delete(id) {
     const result = await db.query(
       `DELETE FROM xportfolio.work_experience
