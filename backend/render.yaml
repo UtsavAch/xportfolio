@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: api
+    env: docker
+    plan: free
+    buildCommand: "" # Docker handles build via Dockerfile
+    startCommand: "" # CMD in Dockerfile runs automatically
+    envVars:
+      - key: DATABASE_URL
+        sync: false # Set in Render Dashboard
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 8080

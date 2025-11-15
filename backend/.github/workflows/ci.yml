@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    env:
+      NODE_ENV: test
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint code
+        run: npm run lint
+
+      - name: Run tests
+        run: npm test
+
+      - name: Build Docker image
+        run: docker build -t express-postgres-api:ci .
+########
+## Environment Variables – If your tests require DATABASE_URL, you need to provide it in the workflow (via GitHub Secrets).
+## Linting & Tests – Make sure npm run lint and npm test exist in your package.json.
+## Docker Build – Your Dockerfile now exposes port 8080, but CI usually doesn’t need to run the container; just building the image is fine.

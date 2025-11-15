@@ -1,0 +1,34 @@
+import { createClient } from "@supabase/supabase-js";
+
+// Initialize Supabase
+const supabaseUrl = process.env.REACT_APP_SUPABASE_URL;
+const supabaseKey = process.env.REACT_APP_SUPABASE_ROLE_KEY;
+const supabase = createClient(supabaseUrl, supabaseKey);
+
+// Upload profile picture (overwrite old one)
+export const uploadProfilePicture = async (file) => {
+  try {
+    // Always save to the same path for each user
+    const filePath = `profile-picture.jpg`;
+
+    // Remove old file first (optional, since overwrite will replace it)
+    await supabase.storage.from("portus").remove([filePath]);
+
+    // Upload new file (upsert: true means overwrite)
+    const { error: uploadError } = await supabase.storage
+      .from("portus")
+      .upload(filePath, file, { upsert: true });
+
+    if (uploadError) throw uploadError;
+
+    // Get public URL
+    const { data: urlData } = supabase.storage
+      .from("portus")
+      .getPublicUrl(filePath);
+
+    return urlData.publicUrl;
+  } catch (err) {
+    console.error("Upload error:", err);
+    throw err;
+  }
+};
