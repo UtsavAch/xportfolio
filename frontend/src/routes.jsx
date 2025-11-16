@@ -1,14 +1,15 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import PersonalArea from "./pages/PersonalArea/PersonalArea";
-import PortfolioPage from "./pages/PortfolioPage/PortfolioPage";
-
+import CmsPage from "./pages/cms/Cms.Page";
+import LoginPage from "./pages/login/Login.Page";
+import PublicPage from "./pages/public/Public.Page";
 const AppRoutes = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/personal-area" element={<PersonalArea />} />
-        <Route path="/portfolio" element={<PortfolioPage />} />
+        <Route path="/cms" element={<CmsPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/public" element={<PublicPage />} />
       </Routes>
     </Router>
   );
