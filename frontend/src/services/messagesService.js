@@ -1,27 +1,34 @@
+// services/messageService.js
 import { api } from "./api";
 
 class MessagesService {
-  // Get all messages
+  // Create a new contact message (public)
+  async sendMessage(messageData) {
+    const response = await api.post("/contact-messages", messageData);
+    return response.data;
+  }
+
+  // Get all messages (CMS/admin - protected)
   async getAllMessages() {
-    const response = await api.get("/messages");
+    const response = await api.get("/contact-messages");
     return response.data;
   }
 
-  // Get a specific message by ID
+  // Get a message by ID (CMS/admin - protected)
   async getMessageById(id) {
-    const response = await api.get(`/messages/${id}`);
+    const response = await api.get(`/contact-messages/${id}`);
     return response.data;
   }
 
-  // Create a new message (by anyone who visits the website)
-  async createMessage(messageData) {
-    const response = await api.post(`/messages`, messageData);
+  // Mark message as read (CMS/admin - protected)
+  async markMessageAsRead(id) {
+    const response = await api.put(`/contact-messages/${id}/read`);
     return response.data;
   }
 
-  // Delete a specific message by ID
+  // Delete a message (CMS/admin - protected)
   async deleteMessage(id) {
-    const response = await api.delete(`/messages/${id}`);
+    const response = await api.delete(`/contact-messages/${id}`);
     return response.data;
   }
 }
