@@ -7,7 +7,7 @@ import {
 import Input from "../../components/input/Input.Component";
 import Button from "../../components/button/Button.Component";
 import ErrorMessage from "../../components/error/Error.Component";
-import loginService from "../../services/loginService";
+import loginService from "../../management/services/loginService";
 
 // Import Styled Components
 import { PageWrapper, Title, Subtitle, LoginForm } from "./Login.Style";
