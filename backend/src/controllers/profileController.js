@@ -11,6 +11,9 @@ const profileSchema = Joi.object({
   cv_url: Joi.string().uri().allow("").optional(),
   phone: Joi.string().allow("").optional(),
   whatsapp: Joi.string().allow("").optional(),
+  email: Joi.string().email().allow("").optional(),
+  linkedin: Joi.string().uri().allow("").optional(),
+  github: Joi.string().uri().allow("").optional(),
   location: Joi.string().allow("").optional(),
 });
 

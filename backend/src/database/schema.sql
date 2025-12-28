@@ -15,18 +15,12 @@ CREATE TABLE IF NOT EXISTS xportfolio.profile (
   cv_url TEXT,
   phone TEXT,
   whatsapp TEXT,
+  email TEXT,
+  linkedin TEXT,
+  github TEXT,
   location TEXT,
   created_at TIMESTAMPTZ DEFAULT NOW(),
   updated_at TIMESTAMPTZ DEFAULT NOW()
-);
-
--- SOCIAL MEDIA
-DROP TABLE IF EXISTS xportfolio.social_media CASCADE;
-CREATE TABLE IF NOT EXISTS xportfolio.social_media (
-  id BIGSERIAL PRIMARY KEY,
-  icon TEXT NOT NULL,
-  url TEXT NOT NULL,
-  created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
 -- EDUCATION
@@ -88,18 +82,6 @@ CREATE TABLE IF NOT EXISTS xportfolio.courses (
   description TEXT,
   created_at TIMESTAMPTZ DEFAULT NOW(),
   updated_at TIMESTAMPTZ DEFAULT NOW()
-);
-
--- CONTACT MESSAGES
-DROP TABLE IF EXISTS xportfolio.contact_messages CASCADE;
-CREATE TABLE IF NOT EXISTS xportfolio.contact_messages (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  sender_name TEXT NOT NULL,
-  sender_email TEXT NOT NULL,
-  sender_linkedin TEXT,
-  message TEXT NOT NULL,
-  is_read BOOLEAN DEFAULT FALSE,
-  created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
 -- ====================================================================

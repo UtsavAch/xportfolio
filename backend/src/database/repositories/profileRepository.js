@@ -10,7 +10,7 @@ class ProfileRepository {
    */
   async getProfile() {
     const result = await db.query(
-      `SELECT id, name, title, bio, profile_photo_url, cv_url, phone, whatsapp, location, created_at, updated_at
+      `SELECT id, name, title, bio, profile_photo_url, cv_url, phone, whatsapp, email, linkedin, github, location, created_at, updated_at
        FROM xportfolio.profile
        WHERE id = $1`,
       [PROFILE_ID]
@@ -28,6 +28,9 @@ class ProfileRepository {
       row.cv_url,
       row.phone,
       row.whatsapp,
+      row.email,
+      row.linkedin,
+      row.github,
       row.location,
       row.created_at,
       row.updated_at
@@ -47,9 +50,12 @@ class ProfileRepository {
            cv_url = $5,
            phone = $6,
            whatsapp = $7,
-           location = $8
-       WHERE id = $9
-       RETURNING id, name, title, bio, profile_photo_url, cv_url, phone, whatsapp, location, created_at, updated_at`,
+           email = $8,
+           linkedin = $9,
+           github = $10,
+           location = $11
+       WHERE id = $12
+       RETURNING id, name, title, bio, profile_photo_url, cv_url, phone, whatsapp, email, linkedin, github, location, created_at, updated_at`,
       [
         updates.name,
         updates.title,
@@ -58,6 +64,9 @@ class ProfileRepository {
         updates.cv_url,
         updates.phone,
         updates.whatsapp,
+        updates.email,
+        updates.linkedin,
+        updates.github,
         updates.location,
         PROFILE_ID,
       ]
@@ -75,6 +84,9 @@ class ProfileRepository {
       row.cv_url,
       row.phone,
       row.whatsapp,
+      row.email,
+      row.linkedin,
+      row.github,
       row.location,
       row.created_at,
       row.updated_at

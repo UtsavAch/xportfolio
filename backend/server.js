@@ -7,13 +7,11 @@ import authRoute from "./src/auth/authRoute.js";
 
 // Import all API routes
 import profileRoute from "./src/routes/profileRoute.js";
-import socialMediaRoute from "./src/routes/socialMediaRoute.js";
 import educationRoute from "./src/routes/educationRoute.js";
 import workExperienceRoute from "./src/routes/workExperienceRoute.js";
 import projectRoute from "./src/routes/projectRoute.js";
 import skillRoute from "./src/routes/skillRoute.js";
 import courseRoute from "./src/routes/courseRoute.js";
-import contactMessageRoute from "./src/routes/contactMessageRoute.js";
 
 import { fileURLToPath } from "url";
 
@@ -37,17 +35,15 @@ app.use(cors());
 const port = process.env.PORT;
 
 // Register authentication routes
-app.use("/auth", authRoute);
+app.use("/api/auth", authRoute);
 
 // API routes
 app.use("/api/profile", profileRoute);
-app.use("/api/social-media", socialMediaRoute);
 app.use("/api/education", educationRoute);
 app.use("/api/work-experience", workExperienceRoute);
 app.use("/api/projects", projectRoute);
 app.use("/api/skills", skillRoute);
 app.use("/api/courses", courseRoute);
-app.use("/api/contact-messages", contactMessageRoute);
 
 // Error handling middleware
 app.use((err, req, res, next) => {

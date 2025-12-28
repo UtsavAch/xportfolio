@@ -9,6 +9,9 @@ export class Profile {
     cv_url,
     phone,
     whatsapp,
+    email,
+    linkedin,
+    github,
     location,
     created_at,
     updated_at
@@ -21,19 +24,12 @@ export class Profile {
     this.cv_url = cv_url;
     this.phone = phone;
     this.whatsapp = whatsapp;
+    this.email = email;
+    this.linkedin = linkedin;
+    this.github = github;
     this.location = location;
     this.created_at = created_at;
     this.updated_at = updated_at;
-  }
-}
-
-//Social Media Model
-export class SocialMedia {
-  constructor(id, icon, url, created_at) {
-    this.id = id;
-    this.icon = icon;
-    this.url = url;
-    this.created_at = created_at;
   }
 }
 
@@ -128,26 +124,5 @@ export class Course {
     this.description = description;
     this.created_at = created_at;
     this.updated_at = updated_at;
-  }
-}
-
-//Contact Message Model
-export class ContactMessage {
-  constructor(
-    id,
-    sender_name,
-    sender_email,
-    sender_linkedin,
-    message,
-    is_read,
-    created_at
-  ) {
-    this.id = id;
-    this.sender_name = sender_name;
-    this.sender_email = sender_email;
-    this.sender_linkedin = sender_linkedin;
-    this.message = message;
-    this.is_read = is_read;
-    this.created_at = created_at;
   }
 }

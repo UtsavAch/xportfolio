@@ -38,3 +38,6 @@ POST    .../api/users       #Create an user (body: name, email, password)
 PUT     .../api/users/:id   #Update the user of specific id (body: name, email, password)
 DELETE  .../api/users/:id   #Delete the user of specific id
 ```
+
+##Update migrations in docker
+docker exec -it xportfolio_api npm run migrate:up
