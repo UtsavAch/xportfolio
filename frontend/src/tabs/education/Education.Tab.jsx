@@ -2,6 +2,15 @@ import { useEffect, useState } from "react";
 import educationService from "../../management/services/educationService";
 import coursesService from "../../management/services/coursesService";
 import Card from "../../components/card/Card.Component";
+import TabWrapper from "../../components/tabwrapper/TabWrapper.Component";
+
+const formatDate = (date) =>
+  date
+    ? new Date(date).toLocaleDateString("en-GB", {
+        year: "numeric",
+        month: "short",
+      })
+    : "Present";
 
 const EducationTab = () => {
   const [education, setEducation] = useState([]);
@@ -34,22 +43,17 @@ const EducationTab = () => {
   if (education.length === 0) return <p>No education found</p>;
 
   return (
-    <section className="education-tab">
+    <TabWrapper>
       <h1>Education</h1>
 
       {education.map((edu) => (
-        <Card key={edu.id} title={edu.university}>
-          <p>
-            <strong>Degree:</strong> {edu.degree}
-          </p>
-          <p>
-            <strong>Start Date:</strong> {edu.start_date}
-          </p>
-          <p>
-            <strong>End Date:</strong> {edu.end_date}
-          </p>
-          <p>{edu.description}</p>
-        </Card>
+        <Card
+          key={edu.id}
+          title={edu.university}
+          subtitle={edu.degree}
+          meta={`${formatDate(edu.start_date)} – ${formatDate(edu.end_date)}`}
+          description={edu.description}
+        />
       ))}
 
       <h2>Courses</h2>
@@ -58,23 +62,24 @@ const EducationTab = () => {
         <p>No courses found</p>
       ) : (
         courses.map((course) => (
-          <Card key={course.id} title={course.title}>
-            <p>
-              <strong>Duration:</strong>{" "}
-              {new Date(course.start_date).getFullYear()} –{" "}
-              {new Date(course.end_date).getFullYear()}
-            </p>
-            <p>{course.description}</p>
-
-            {course.link && (
-              <a href={course.link} target="_blank" rel="noreferrer">
-                Course Link
-              </a>
-            )}
-          </Card>
+          <Card
+            key={course.id}
+            title={course.title}
+            meta={`${formatDate(course.start_date)} – ${formatDate(
+              course.end_date
+            )}`}
+            description={course.description}
+            extra={
+              course.link && (
+                <a href={course.link} target="_blank" rel="noreferrer">
+                  Course link
+                </a>
+              )
+            }
+          />
         ))
       )}
-    </section>
+    </TabWrapper>
   );
 };
 

@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import projectsService from "../../management/services/projectsService";
+import Card from "../../components/card/Card.Component";
+import TabWrapper from "../../components/tabwrapper/TabWrapper.Component";
+
 const ProjectsTab = () => {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -25,23 +28,37 @@ const ProjectsTab = () => {
   if (projects.length === 0) return <p>No projects found</p>;
 
   return (
-    <section className="projects-tab">
+    <TabWrapper>
       <h1>Projects</h1>
+
       {projects.map((project) => (
-        <div key={project.id} className="project-item">
-          <h2>{project.title}</h2>
-          <p>
-            <strong>Link:</strong> {project.link}
-          </p>
-          <p>
-            <strong>Description:</strong> {project.description}
-          </p>
-          <p>
-            <strong>Video URL:</strong> {project.video_url}
-          </p>
-        </div>
+        <Card
+          key={project.id}
+          title={project.title}
+          description={project.description}
+          extra={
+            project.link && (
+              <a href={project.link} target="_blank" rel="noopener noreferrer">
+                View Project
+              </a>
+            )
+          }
+        >
+          {project.video_url && (
+            <p>
+              <strong>Video:</strong>{" "}
+              <a
+                href={project.video_url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Watch demo
+              </a>
+            </p>
+          )}
+        </Card>
       ))}
-    </section>
+    </TabWrapper>
   );
 };
 

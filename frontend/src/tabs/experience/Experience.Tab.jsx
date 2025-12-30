@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import experienceService from "../../management/services/experienceService";
+import Card from "../../components/card/Card.Component";
+import TabWrapper from "../../components/tabwrapper/TabWrapper.Component";
 
 const ExperienceTab = () => {
   const [experiences, setExperiences] = useState([]);
@@ -26,27 +28,20 @@ const ExperienceTab = () => {
   if (experiences.length === 0) return <p>No experiences found</p>;
 
   return (
-    <section className="experience-tab">
+    <TabWrapper>
       <h1>Experience</h1>
+
       {experiences.map((exp) => (
-        <div key={exp.id} className="experience-item">
-          <h2>
-            {exp.position} at {exp.company}
-          </h2>
-          <p>
-            <strong>Duration:</strong> {exp.start_date} -{" "}
-            {exp.end_date || "Present"}
-          </p>
-          <p>
-            <strong>Location:</strong> {exp.location}
-          </p>
-          <p>
-            <strong>Description:</strong> {exp.description}
-          </p>
-        </div>
+        <Card
+          key={exp.id}
+          title={exp.position}
+          subtitle={exp.company}
+          meta={`${exp.start_date} – ${exp.end_date || "Present"}`}
+          description={exp.description}
+          extra={<span>{exp.location}</span>}
+        />
       ))}
-      <br />
-    </section>
+    </TabWrapper>
   );
 };
 

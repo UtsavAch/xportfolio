@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import profileService from "../../management/services/profileService";
 import skillsService from "../../management/services/skillsService";
 import Card from "../../components/card/Card.Component";
+import TabWrapper from "../../components/tabwrapper/TabWrapper.Component";
 
 const groupSkillsByType = (skills) => {
   return skills.reduce((acc, skill) => {
@@ -43,7 +44,7 @@ const AboutTab = () => {
   if (!profile) return <p>No profile found</p>;
 
   return (
-    <section className="about-tab">
+    <TabWrapper>
       <h1>About me</h1>
 
       <p>
@@ -91,7 +92,7 @@ const AboutTab = () => {
           </ul>
         </Card>
       ))}
-    </section>
+    </TabWrapper>
   );
 };
 
