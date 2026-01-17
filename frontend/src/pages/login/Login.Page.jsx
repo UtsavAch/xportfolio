@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   UilUser,
   UilKeySkeleton,
@@ -7,27 +8,27 @@ import {
 import Input from "../../components/input/Input.Component";
 import Button from "../../components/button/Button.Component";
 import ErrorMessage from "../../components/error/Error.Component";
-import loginService from "../../management/services/loginService";
+import { useAuth } from "../../contexts/AuthContext";
 
 // Import Styled Components
 import { PageWrapper, Title, Subtitle, LoginForm } from "./Login.Style";
 
 function LoginPage() {
+  const { login } = useAuth();
+  const navigate = useNavigate();
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    const result = await loginService.login(username, password);
-
-    if (!result.success) {
-      setError(result.message);
-      return;
+    try {
+      await login(username, password);
+      navigate("/main");
+    } catch (error) {
+      setError(error.message);
     }
-
-    setError("");
-    window.location.href = "/main";
   };
 
   return (

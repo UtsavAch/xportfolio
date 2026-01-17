@@ -3,6 +3,8 @@ import profileService from "../../management/services/profileService";
 import skillsService from "../../management/services/skillsService";
 import Card from "../../components/card/Card.Component";
 import TabWrapper from "../../components/tabwrapper/TabWrapper.Component";
+import Button from "../../components/button/Button.Component";
+import { useAuth } from "../../contexts/AuthContext";
 
 const groupSkillsByType = (skills) => {
   return skills.reduce((acc, skill) => {
@@ -13,11 +15,13 @@ const groupSkillsByType = (skills) => {
   }, {});
 };
 
-const AboutTab = () => {
+const ProfileTab = () => {
   const [profile, setProfile] = useState(null);
   const [skills, setSkills] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const { isLoggedIn, logout } = useAuth();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -92,8 +96,16 @@ const AboutTab = () => {
           </ul>
         </Card>
       ))}
+      {/* Logout button shown only when logged in */}
+      {isLoggedIn && (
+        <div style={{ marginTop: 20 }}>
+          <Button type="primary" onClick={logout}>
+            Logout
+          </Button>
+        </div>
+      )}
     </TabWrapper>
   );
 };
 
-export default AboutTab;
+export default ProfileTab;

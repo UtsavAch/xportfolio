@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Navbar from "../../components/navbar/Navbar.Component";
-import ProfileTab from "../../tabs/about/Profile.Tab";
+import ProfileTab from "../../tabs/profile/Profile.Tab";
 import EducationTab from "../../tabs/education/Education.Tab";
 import ExperienceTab from "../../tabs/experience/Experience.Tab";
 import ProjectsTab from "../../tabs/projects/Projects.Tab";
