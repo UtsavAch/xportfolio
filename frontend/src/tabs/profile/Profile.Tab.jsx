@@ -6,7 +6,8 @@ import {
   UilWhatsapp,
   UilPhone,
   UilMapMarker,
-  UilDownloadAlt, // Added for CV
+  UilDownloadAlt,
+  UilSetting,
 } from "@iconscout/react-unicons";
 
 import profileService from "../../management/services/profileService";
@@ -20,6 +21,7 @@ import Button from "../../components/button/Button.Component";
 import CmsButton from "../../components/cmsbutton/CmsButton.Component";
 import ErrorMessage from "../../components/error/Error.Component";
 import SectionTitle from "../../components/sectiontitle/SectionTitle.Component";
+import Footer from "../../components/footer/Footer.Component";
 
 // Styled Components
 import {
@@ -157,7 +159,7 @@ const ProfileTab = () => {
         </CVButtonWrapper>
       )}
 
-      <SectionTitle>Expertise</SectionTitle>
+      <SectionTitle icon={<UilSetting size="28" />}>Expertise</SectionTitle>
 
       <SkillsGrid>
         {Object.entries(skills).map(([type, skillsList]) => (
@@ -178,6 +180,8 @@ const ProfileTab = () => {
           </Button>
         </LogoutWrapper>
       )}
+
+      <Footer />
     </TabWrapper>
   );
 };

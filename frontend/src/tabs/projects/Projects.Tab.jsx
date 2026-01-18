@@ -1,4 +1,7 @@
 import { useEffect, useState } from "react";
+
+import { UilCodeBranch } from "@iconscout/react-unicons";
+
 import { useAuth } from "../../contexts/AuthContext";
 import projectsService from "../../management/services/projectsService";
 import Card from "../../components/card/Card.Component";
@@ -8,6 +11,7 @@ import CmsButton from "../../components/cmsbutton/CmsButton.Component";
 import ErrorMessage from "../../components/error/Error.Component";
 import Confirm from "../../components/confirm/Confirm.Component";
 import SectionTitle from "../../components/sectiontitle/SectionTitle.Component";
+import Footer from "../../components/footer/Footer.Component";
 
 // Import Styled Components
 import { HeaderContainer, ActionGroup, ExternalLink } from "./Projects.Style";
@@ -125,7 +129,7 @@ const ProjectsTab = () => {
       />
 
       <HeaderContainer>
-        <SectionTitle>Projects</SectionTitle>
+        <SectionTitle icon={<UilCodeBranch size="28" />}>Projects</SectionTitle>
         {isLoggedIn && (
           <CmsButton
             type="add"
@@ -188,6 +192,7 @@ const ProjectsTab = () => {
         resourceName="project"
         fields={projectFields}
       />
+      <Footer />
     </TabWrapper>
   );
 };

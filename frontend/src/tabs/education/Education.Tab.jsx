@@ -1,4 +1,7 @@
 import { useEffect, useState } from "react";
+
+import { UilGraduationCap, UilBookOpen } from "@iconscout/react-unicons";
+
 import { useAuth } from "../../contexts/AuthContext";
 import educationService from "../../management/services/educationService";
 import coursesService from "../../management/services/coursesService";
@@ -10,6 +13,7 @@ import ErrorMessage from "../../components/error/Error.Component";
 import Confirm from "../../components/confirm/Confirm.Component";
 import formatDate from "../../helpers/formatDate";
 import SectionTitle from "../../components/sectiontitle/SectionTitle.Component";
+import Footer from "../../components/footer/Footer.Component";
 
 // Import Styled Components
 import { HeaderContainer, ActionGroup, ExternalLink } from "./Education.Style";
@@ -163,7 +167,9 @@ const EducationTab = () => {
       />
 
       <HeaderContainer>
-        <SectionTitle>Education</SectionTitle>
+        <SectionTitle icon={<UilGraduationCap size="28" />}>
+          Education
+        </SectionTitle>
         {isLoggedIn && (
           <CmsButton
             type="add"
@@ -198,7 +204,7 @@ const EducationTab = () => {
       ))}
 
       <HeaderContainer $marginTop="2rem">
-        <SectionTitle>Courses</SectionTitle>
+        <SectionTitle icon={<UilBookOpen size="28" />}>Courses</SectionTitle>
         {isLoggedIn && (
           <CmsButton
             type="add"
@@ -251,6 +257,7 @@ const EducationTab = () => {
         resourceName={targetType}
         fields={targetType === "education" ? educationFields : courseFields}
       />
+      <Footer />
     </TabWrapper>
   );
 };

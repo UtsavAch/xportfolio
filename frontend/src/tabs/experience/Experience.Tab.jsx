@@ -1,4 +1,7 @@
 import { useEffect, useState } from "react";
+
+import { UilBriefcaseAlt } from "@iconscout/react-unicons";
+
 import { useAuth } from "../../contexts/AuthContext";
 import experienceService from "../../management/services/experienceService";
 import Card from "../../components/card/Card.Component";
@@ -9,6 +12,7 @@ import ErrorMessage from "../../components/error/Error.Component";
 import Confirm from "../../components/confirm/Confirm.Component";
 import formatDate from "../../helpers/formatDate";
 import SectionTitle from "../../components/sectiontitle/SectionTitle.Component";
+import Footer from "../../components/footer/Footer.Component";
 
 // Import Styled Components
 import { HeaderContainer, ActionGroup, LocationText } from "./Experience.Style";
@@ -129,7 +133,9 @@ const ExperienceTab = () => {
       />
 
       <HeaderContainer>
-        <SectionTitle>Experience</SectionTitle>
+        <SectionTitle icon={<UilBriefcaseAlt size="28" />}>
+          Work Experience
+        </SectionTitle>
         {isLoggedIn && (
           <CmsButton
             type="add"
@@ -177,6 +183,7 @@ const ExperienceTab = () => {
         resourceName="experience"
         fields={experienceFields}
       />
+      <Footer />
     </TabWrapper>
   );
 };
