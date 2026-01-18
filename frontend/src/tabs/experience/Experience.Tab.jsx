@@ -5,17 +5,13 @@ import Card from "../../components/card/Card.Component";
 import TabWrapper from "../../components/tabwrapper/TabWrapper.Component";
 import CmsOverlay from "../../components/cmsoverlay/CmsOverlay.component";
 import CmsButton from "../../components/cmsbutton/CmsButton.Component";
-import ErrorMessage from "../../components/error/Error.Component"; // Adjust path if needed
-import Confirm from "../../components/confirm/Confirm.Component"; // Adjust path if needed
+import ErrorMessage from "../../components/error/Error.Component";
+import Confirm from "../../components/confirm/Confirm.Component";
 import formatDate from "../../helpers/formatDate";
+import SectionTitle from "../../components/sectiontitle/SectionTitle.Component";
 
 // Import Styled Components
-import {
-  HeaderContainer,
-  MainTitle,
-  ActionGroup,
-  LocationText,
-} from "./Experience.Style";
+import { HeaderContainer, ActionGroup, LocationText } from "./Experience.Style";
 
 const experienceFields = [
   { name: "company", label: "Company", type: "text" },
@@ -133,7 +129,7 @@ const ExperienceTab = () => {
       />
 
       <HeaderContainer>
-        <MainTitle>Experience</MainTitle>
+        <SectionTitle>Experience</SectionTitle>
         {isLoggedIn && (
           <CmsButton
             type="add"

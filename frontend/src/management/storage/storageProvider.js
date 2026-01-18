@@ -12,18 +12,18 @@ export const uploadProfilePicture = async (file) => {
     const filePath = `profile-picture.jpg`;
 
     // Remove old file first (optional, since overwrite will replace it)
-    await supabase.storage.from("portus").remove([filePath]);
+    await supabase.storage.from("xportfolio").remove([filePath]);
 
     // Upload new file (upsert: true means overwrite)
     const { error: uploadError } = await supabase.storage
-      .from("portus")
+      .from("xportfolio")
       .upload(filePath, file, { upsert: true });
 
     if (uploadError) throw uploadError;
 
     // Get public URL
     const { data: urlData } = supabase.storage
-      .from("portus")
+      .from("xportfolio")
       .getPublicUrl(filePath);
 
     return urlData.publicUrl;

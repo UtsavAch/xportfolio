@@ -9,15 +9,10 @@ import CmsButton from "../../components/cmsbutton/CmsButton.Component";
 import ErrorMessage from "../../components/error/Error.Component";
 import Confirm from "../../components/confirm/Confirm.Component";
 import formatDate from "../../helpers/formatDate";
+import SectionTitle from "../../components/sectiontitle/SectionTitle.Component";
 
 // Import Styled Components
-import {
-  HeaderContainer,
-  MainTitle,
-  SectionTitle,
-  ActionGroup,
-  ExternalLink,
-} from "./Education.Style";
+import { HeaderContainer, ActionGroup, ExternalLink } from "./Education.Style";
 
 const educationFields = [
   { name: "university", label: "University", type: "text" },
@@ -168,7 +163,7 @@ const EducationTab = () => {
       />
 
       <HeaderContainer>
-        <MainTitle>Education</MainTitle>
+        <SectionTitle>Education</SectionTitle>
         {isLoggedIn && (
           <CmsButton
             type="add"

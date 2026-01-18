@@ -1,10 +1,44 @@
 import { useEffect, useState } from "react";
+import {
+  UilGithub,
+  UilLinkedin,
+  UilEnvelope,
+  UilWhatsapp,
+  UilPhone,
+  UilMapMarker,
+  UilDownloadAlt, // Added for CV
+} from "@iconscout/react-unicons";
+
 import profileService from "../../management/services/profileService";
 import skillsService from "../../management/services/skillsService";
-import Card from "../../components/card/Card.Component";
-import TabWrapper from "../../components/tabwrapper/TabWrapper.Component";
-import Button from "../../components/button/Button.Component";
 import { useAuth } from "../../contexts/AuthContext";
+
+// Components
+import TabWrapper from "../../components/tabwrapper/TabWrapper.Component";
+import Card from "../../components/card/Card.Component";
+import Button from "../../components/button/Button.Component";
+import CmsButton from "../../components/cmsbutton/CmsButton.Component";
+import ErrorMessage from "../../components/error/Error.Component";
+import SectionTitle from "../../components/sectiontitle/SectionTitle.Component";
+
+// Styled Components
+import {
+  ProfileHero,
+  PhotoContainer,
+  ProfileInfo,
+  TitleWrapper,
+  SubTitle,
+  SocialBar,
+  ContactInfoList,
+  ContactItem,
+  CVButtonWrapper,
+  LocationWrapper,
+  BioText,
+  SkillsGrid,
+  SkillList,
+  SkillBadge,
+  LogoutWrapper,
+} from "./Profile.Style";
 
 const groupSkillsByType = (skills) => {
   return skills.reduce((acc, skill) => {
@@ -20,7 +54,6 @@ const ProfileTab = () => {
   const [skills, setSkills] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
   const { isLoggedIn, logout } = useAuth();
 
   useEffect(() => {
@@ -30,7 +63,6 @@ const ProfileTab = () => {
           profileService.getProfile(),
           skillsService.getAllSkills(),
         ]);
-
         setProfile(profileData);
         setSkills(groupSkillsByType(skillsData));
       } catch (err) {
@@ -39,70 +71,112 @@ const ProfileTab = () => {
         setLoading(false);
       }
     };
-
     fetchData();
   }, []);
 
+  const handleDownloadCV = () => {
+    if (profile?.cv_url) {
+      window.open(profile.cv_url, "_blank");
+    }
+  };
+
   if (loading) return <p>Loading profile...</p>;
-  if (error) return <p>{error}</p>;
-  if (!profile) return <p>No profile found</p>;
+  if (!profile) return null;
 
   return (
     <TabWrapper>
-      <h1>About me</h1>
+      <ErrorMessage message={error} onClear={() => setError(null)} />
 
-      <p>
-        <strong>Name:</strong> {profile.name}
-      </p>
-      <p>
-        <strong>Title:</strong> {profile.title}
-      </p>
-      <p>
-        <strong>PhotoURL:</strong> {profile.profile_photo_url}
-      </p>
-      <p>
-        <strong>CV:</strong> {profile.cv_url}
-      </p>
+      <ProfileHero>
+        <PhotoContainer>
+          <img
+            src={profile.profile_photo_url || "https://i.pravatar.cc/300"}
+            alt={profile.name}
+          />
+        </PhotoContainer>
 
-      <Card title="Short Bio" description={profile.bio} />
+        <ProfileInfo>
+          <TitleWrapper>
+            <h1>{profile.name}</h1>
+            {isLoggedIn && <CmsButton type="edit" onClick={() => {}} />}
+          </TitleWrapper>
 
-      <p>
-        <strong>Email:</strong> {profile.email}
-      </p>
-      <p>
-        <strong>Phone:</strong> {profile.phone}
-      </p>
-      <p>
-        <strong>WhatsApp:</strong> {profile.whatsapp}
-      </p>
-      <p>
-        <strong>Location:</strong> {profile.location}
-      </p>
-      <p>
-        <strong>LinkedIn:</strong> {profile.linkedin}
-      </p>
-      <p>
-        <strong>GitHub:</strong> {profile.github}
-      </p>
+          <SubTitle>{profile.title}</SubTitle>
 
-      <h2>Skills</h2>
+          <LocationWrapper>
+            <UilMapMarker size="18" /> {profile.location}
+          </LocationWrapper>
 
-      {Object.entries(skills).map(([type, skillsList]) => (
-        <Card key={type} title={type}>
-          <ul>
-            {skillsList.map((skill) => (
-              <li key={skill.id}>{skill.name}</li>
-            ))}
-          </ul>
-        </Card>
-      ))}
-      {/* Logout button shown only when logged in */}
-      {isLoggedIn && (
-        <div style={{ marginTop: 20 }}>
-          <Button type="primary" onClick={logout}>
-            Logout
+          {/* Social Links Bar (Horizontal) */}
+          <SocialBar>
+            {profile.linkedin && (
+              <a href={profile.linkedin} target="_blank" rel="noreferrer">
+                <UilLinkedin size="24" />
+              </a>
+            )}
+            {profile.github && (
+              <a href={profile.github} target="_blank" rel="noreferrer">
+                <UilGithub size="24" />
+              </a>
+            )}
+          </SocialBar>
+
+          {/* Contact Details (Vertical List) */}
+          <ContactInfoList>
+            {profile.email && (
+              <ContactItem>
+                <UilEnvelope size="20" /> {profile.email}
+              </ContactItem>
+            )}
+            {profile.phone && (
+              <ContactItem>
+                <UilPhone size="20" /> {profile.phone}
+              </ContactItem>
+            )}
+            {profile.whatsapp && (
+              <ContactItem>
+                <UilWhatsapp size="20" /> {profile.whatsapp}
+              </ContactItem>
+            )}
+          </ContactInfoList>
+
+          <BioText>{profile.bio}</BioText>
+        </ProfileInfo>
+      </ProfileHero>
+
+      {/* CV Download Button */}
+      {profile.cv_url && (
+        <CVButtonWrapper>
+          <Button
+            type="primary"
+            onClick={handleDownloadCV}
+            icon={<UilDownloadAlt size="20" />}
+          >
+            Download CV
           </Button>
-        </div>
+        </CVButtonWrapper>
+      )}
+
+      <SectionTitle>Expertise</SectionTitle>
+
+      <SkillsGrid>
+        {Object.entries(skills).map(([type, skillsList]) => (
+          <Card key={type} title={type}>
+            <SkillList>
+              {skillsList.map((skill) => (
+                <SkillBadge key={skill.id}>{skill.name}</SkillBadge>
+              ))}
+            </SkillList>
+          </Card>
+        ))}
+      </SkillsGrid>
+
+      {isLoggedIn && (
+        <LogoutWrapper>
+          <Button onClick={logout} type="secondary">
+            Logout session
+          </Button>
+        </LogoutWrapper>
       )}
     </TabWrapper>
   );

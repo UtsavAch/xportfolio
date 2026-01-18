@@ -7,14 +7,10 @@ import CmsOverlay from "../../components/cmsoverlay/CmsOverlay.component";
 import CmsButton from "../../components/cmsbutton/CmsButton.Component";
 import ErrorMessage from "../../components/error/Error.Component";
 import Confirm from "../../components/confirm/Confirm.Component";
+import SectionTitle from "../../components/sectiontitle/SectionTitle.Component";
 
 // Import Styled Components
-import {
-  HeaderContainer,
-  MainTitle,
-  ActionGroup,
-  ExternalLink,
-} from "./Projects.Style";
+import { HeaderContainer, ActionGroup, ExternalLink } from "./Projects.Style";
 
 const projectFields = [
   { name: "title", label: "Project Title", type: "text" },
@@ -129,7 +125,7 @@ const ProjectsTab = () => {
       />
 
       <HeaderContainer>
-        <MainTitle>Projects</MainTitle>
+        <SectionTitle>Projects</SectionTitle>
         {isLoggedIn && (
           <CmsButton
             type="add"

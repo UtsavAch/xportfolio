@@ -7,14 +7,6 @@ export const HeaderContainer = styled.div`
   margin-top: ${(props) => props.$marginTop || "0"};
 `;
 
-export const MainTitle = styled.h1`
-  margin: 0;
-`;
-
-export const SectionTitle = styled.h2`
-  margin: 0;
-`;
-
 export const ActionGroup = styled.div`
   display: flex;
   align-items: center;
