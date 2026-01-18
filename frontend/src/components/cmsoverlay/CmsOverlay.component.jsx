@@ -80,7 +80,7 @@ const CmsOverlay = ({
                 <DateInput
                   value={formData[field.name]}
                   onChange={(date) =>
-                    handleChange(field.name, date.toISOString())
+                    handleChange(field.name, date ? date.toISOString() : null)
                   }
                   placeholder="Select date"
                 />
