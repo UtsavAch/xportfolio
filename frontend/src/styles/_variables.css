@@ -5,11 +5,11 @@
   --color-text: rgb(255, 255, 255);
   --color-button: rgb(249 178 123);
   --color-input-border: rgb(249 178 123);
-  --color-low-opacity-border: rgba(249, 178, 123, 0.2)
-  --color-icon-light: rgb(255, 255, 255);
+  --color-low-opacity-border: rgba(249, 178, 123, 0.2);
   --color-icon-dark: rgb(2, 2, 2);
   --color-highlight: rgb(249 178 123);
   --overlay-bg: rgba(86, 30, 30, 0.5);
+  --color-icon-light: rgb(255, 255, 255);
 
   /* Font weights */
   --font-regular: 400;
