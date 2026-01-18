@@ -90,7 +90,7 @@ const CmsOverlay = ({
                   type={field.type || "text"}
                   value={formData[field.name] || ""}
                   onChange={(e) => handleChange(field.name, e.target.value)}
-                  required
+                  // required
                 />
               )}
             </div>

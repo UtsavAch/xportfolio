@@ -121,7 +121,7 @@ const ExperienceTab = () => {
 
   return (
     <TabWrapper>
-      <ErrorMessage message={error} />
+      <ErrorMessage message={error} onClear={() => setError(null)} />
 
       <Confirm
         isOpen={confirmData.isOpen}
@@ -186,90 +186,3 @@ const ExperienceTab = () => {
 };
 
 export default ExperienceTab;
-
-// import { useEffect, useState } from "react";
-// // import { UilPen, UilPlus } from "@iconscout/react-unicons";
-// import experienceService from "../../management/services/experienceService";
-// import Card from "../../components/card/Card.Component";
-// import TabWrapper from "../../components/tabwrapper/TabWrapper.Component";
-// // import CmsOverlay from "../../components/cmsoverlay/CmsOverlay.component";
-// import formatDate from "../../helpers/formatDate";
-
-// // const experienceFields = [
-// //   { name: "company", label: "Company", type: "text" },
-// //   { name: "position", label: "Position", type: "text" },
-// //   { name: "start_date", label: "Start Date", type: "date" },
-// //   { name: "end_date", label: "End Date", type: "date" },
-// //   { name: "location", label: "Location", type: "text" },
-// //   { name: "description", label: "Description", type: "text" },
-// // ];
-
-// const ExperienceTab = () => {
-//   const [experiences, setExperiences] = useState([]);
-//   const [loading, setLoading] = useState(true);
-//   const [error, setError] = useState(null);
-
-//   // // State for Overlay
-//   // const [isOverlayOpen, setIsOverlayOpen] = useState(false);
-//   // const [editingItem, setEditingItem] = useState(null);
-//   // const [targetType, setTargetType] = useState(null); // 'experience'
-//   // const [overlayMode, setOverlayMode] = useState("create"); // 'create' or 'update'
-
-//   useEffect(() => {
-//     const fetchExperiences = async () => {
-//       try {
-//         const data = await experienceService.getAllExperiences();
-//         setExperiences(data);
-//       } catch (err) {
-//         setError("Failed to load experiences");
-//       } finally {
-//         setLoading(false);
-//       }
-//     };
-
-//     fetchExperiences();
-//   }, []);
-
-//   // const handleAddClick = (type) => {
-//   //   setOverlayMode("create");
-//   //   setTargetType(type);
-//   //   setEditingItem({}); // Empty object for creation
-//   //   setIsOverlayOpen(true);
-//   // };
-
-//   // const handleEditClick = (item, type) => {
-//   //   setOverlayMode("update");
-//   //   setTargetType(type);
-//   //   setEditingItem(item);
-//   //   setIsOverlayOpen(true);
-//   // };
-
-//   // const handleCloseOverlay = () => {
-//   //   setIsOverlayOpen(false);
-//   //   setEditingItem(null);
-//   //   setTargetType(null);
-//   // };
-
-//   if (loading) return <p>Loading experiences...</p>;
-//   if (error) return <p>{error}</p>;
-//   if (experiences.length === 0) return <p>No experiences found</p>;
-
-//   return (
-//     <TabWrapper>
-//       <h1>Experience</h1>
-
-//       {experiences.map((exp) => (
-//         <Card
-//           key={exp.id}
-//           title={exp.position}
-//           subtitle={exp.company}
-//           meta={`${formatDate(exp.start_date)} – ${formatDate(exp.end_date) || "Present"}`}
-//           description={exp.description}
-//           extra={<span>{exp.location}</span>}
-//         />
-//       ))}
-//     </TabWrapper>
-//   );
-// };
-
-// export default ExperienceTab;

@@ -156,7 +156,7 @@ const EducationTab = () => {
 
   return (
     <TabWrapper>
-      <ErrorMessage message={error} />
+      <ErrorMessage message={error} onClear={() => setError(null)} />
 
       <Confirm
         isOpen={confirmData.isOpen}
