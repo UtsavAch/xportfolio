@@ -4,6 +4,7 @@ import {
   UilExternalLinkAlt,
   UilGithubAlt,
   UilPlayCircle,
+  UilMultiply, // Import 'X' icon
 } from "@iconscout/react-unicons";
 
 const Card = ({
@@ -12,13 +13,16 @@ const Card = ({
   meta,
   location,
   description,
-  tags = [], // New prop: Array of strings ["React", "SQL"]
-  links = {}, // New prop: { url: '...', github: '...' }
+  tags = [],
+  links = {},
   children,
   extra,
+  onTagDelete, // [New Prop] Handler for deleting a tag
 }) => {
   return (
     <S.CardContainer>
+      {/* ... (Keep Header, Divider, Description logic exactly as is) ... */}
+
       {(title || extra) && (
         <S.CardHeader>
           <div>
@@ -38,35 +42,46 @@ const Card = ({
             {subtitle && <S.Subtitle>{subtitle}</S.Subtitle>}
             {meta && <S.Meta>{meta}</S.Meta>}
           </div>
-
-          {/* Typically used for dates or badges in top right */}
           {extra && <S.Meta>{extra}</S.Meta>}
         </S.CardHeader>
       )}
 
-      {/* Subtle divider separating header from description */}
       <S.Divider />
 
       {description && <S.Description>{description}</S.Description>}
-
-      {/* Custom content block */}
       {children && <div style={{ marginTop: "15px" }}>{children}</div>}
 
-      {/* Footer for Tags and Links */}
       {(tags.length > 0 || links.url || links.github || links.video) && (
         <S.Footer>
           <S.TagsContainer>
-            {tags.map((tag, index) => (
-              <S.Tag key={index}>{tag}</S.Tag>
-            ))}
+            {tags.map((tag, index) => {
+              const tagName = typeof tag === "string" ? tag : tag.name;
+
+              return (
+                <S.Tag key={tag.id || index}>
+                  {tagName}
+                  {onTagDelete && (
+                    <S.DeleteTagIcon
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation(); // Prevents clicking the tag from clicking the card
+                        onTagDelete(tag);
+                      }}
+                    >
+                      <UilMultiply size="14" />
+                    </S.DeleteTagIcon>
+                  )}
+                </S.Tag>
+              );
+            })}
           </S.TagsContainer>
 
-          {/* Only show the vertical line if there are both tags AND links */}
           {tags.length > 0 && (links.url || links.github || links.video) && (
             <S.VerticalDivider />
           )}
 
           <S.ActionLinks>
+            {/* ... Keep existing links logic ... */}
             {links.video && (
               <a
                 href={links.video}

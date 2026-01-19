@@ -110,6 +110,24 @@ export const Tag = styled.span`
   text-transform: uppercase;
   letter-spacing: 0.05em;
   border: 1px solid var(--color-low-opacity-border);
+
+  /* Add flex to align text and delete icon */
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+`;
+
+export const DeleteTagIcon = styled.span`
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 1;
+    color: #ff4d4f; /* Red color for delete action */
+  }
 `;
 
 export const VerticalDivider = styled.div`

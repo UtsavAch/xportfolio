@@ -42,8 +42,9 @@ const CmsOverlay = ({
 
   if (!isOpen) return null;
 
-  const handleChange = (name, value) => {
-    setFormData((prev) => ({ ...prev, [name]: value }));
+  const handleChange = (name, value, files) => {
+    // setFormData((prev) => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: files ? files[0] : value }));
   };
 
   const handleSubmit = (e) => {
@@ -86,25 +87,39 @@ const CmsOverlay = ({
                 <Input
                   id={field.name}
                   type={field.type || "text"}
-                  value={formData[field.name] || ""}
-                  onChange={(e) => handleChange(field.name, e.target.value)}
-                  // required
+                  // Don't bind "value" for file inputs to avoid browser errors
+                  value={
+                    field.type === "file"
+                      ? undefined
+                      : formData[field.name] || ""
+                  }
+                  onChange={(e) =>
+                    handleChange(field.name, e.target.value, e.target.files)
+                  }
                 />
               )}
             </div>
           ))}
+          <StyledOverlay.ButtonGroup>
+            <StyledOverlay.CancelButton type="button" onClick={onClose}>
+              Cancel
+            </StyledOverlay.CancelButton>
+            <Button type="secondary" isSubmit>
+              {mode === "create" ? "Create" : "Update"}
+            </Button>
+          </StyledOverlay.ButtonGroup>
         </StyledOverlay.Form>
-        <StyledOverlay.ButtonGroup>
-          <StyledOverlay.CancelButton type="button" onClick={onClose}>
-            Cancel
-          </StyledOverlay.CancelButton>
-          <Button type="secondary" isSubmit>
-            {mode === "create" ? "Create" : "Update"}
-          </Button>
-        </StyledOverlay.ButtonGroup>
       </StyledOverlay.ModalContainer>
     </StyledOverlay.OverlayBackground>
   );
 };
 
 export default CmsOverlay;
+
+/* <Input
+  id={field.name}
+  type={field.type || "text"}
+  value={formData[field.name] || ""}
+  onChange={(e) => handleChange(field.name, e.target.value)}
+  // required
+/>; */

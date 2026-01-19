@@ -32,3 +32,27 @@ export const uploadProfilePicture = async (file) => {
     throw err;
   }
 };
+
+// Upload CV
+export const uploadCV = async (file) => {
+  try {
+    const filePath = `cv.pdf`; //
+
+    await supabase.storage.from("xportfolio").remove([filePath]);
+
+    const { error: uploadError } = await supabase.storage
+      .from("xportfolio")
+      .upload(filePath, file, { upsert: true });
+
+    if (uploadError) throw uploadError;
+
+    const { data: urlData } = supabase.storage
+      .from("xportfolio")
+      .getPublicUrl(filePath);
+
+    return `${urlData.publicUrl}?t=${new Date().getTime()}`;
+  } catch (err) {
+    console.error("CV Upload error:", err);
+    throw err;
+  }
+};

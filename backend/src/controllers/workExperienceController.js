@@ -87,7 +87,7 @@ class WorkExperienceController {
 
       const result = await workExperienceService.update(
         req.params.id,
-        req.body
+        req.body,
       );
       if (!result.success) {
         return res.status(result.status).json({ error: result.error });
