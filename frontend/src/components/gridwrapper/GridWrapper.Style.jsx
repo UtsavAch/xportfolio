@@ -39,30 +39,3 @@ export const StyledGrid = styled.div`
     }
   }
 `;
-
-// import styled from "styled-components";
-
-// export const StyledGrid = styled.div`
-//   display: grid;
-//   grid-template-columns: repeat(2, 1fr);
-//   gap: 1.5rem;
-//   margin-top: 1rem;
-
-//   /* Centering logic for odd number of items */
-//   & > *:last-child:nth-child(odd) {
-//     grid-column: 1 / span 2;
-//     justify-self: center;
-//     width: 100%;
-//     /* Keep width consistent with the 2-column layout */
-//     max-width: calc(50% - 0.75rem);
-//   }
-
-//   @media (max-width: 900px) {
-//     grid-template-columns: 1fr;
-
-//     & > *:last-child:nth-child(odd) {
-//       grid-column: auto;
-//       max-width: 100%;
-//     }
-//   }
-// `;

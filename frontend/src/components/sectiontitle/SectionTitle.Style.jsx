@@ -1,20 +1,29 @@
 import styled from "styled-components";
-
 export const TitleContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 12px;
-  /* Fixed subtle top margin */
-  margin-top: 1.5rem;
+  gap: 15px;
+  margin-top: 2rem;
   margin-bottom: 2rem;
-  color: var(--color-text);
+  position: relative;
+
+  /* A small dot/line that "plugs into" the icon */
+  &::before {
+    content: "";
+    position: absolute;
+    left: -30px;
+    width: 20px;
+    height: 2px;
+    background: var(--color-highlight);
+    opacity: 0.5;
+  }
 
   svg {
-    color: var(--color-highlight);
-    display: block;
-    /* Ensures icon vertical alignment remains steady 
-       even if text has an underline border */
-    margin-bottom: 2px;
+    background: var(--color-bg);
+    padding: 5px;
+    border: 1px solid var(--color-low-opacity-border);
+    border-radius: 4px;
+    z-index: 1;
   }
 `;
 

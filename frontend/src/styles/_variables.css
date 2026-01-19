@@ -1,16 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;600;700&display=swap");
+
 :root {
-  /* Colors */
-  --color-bg: rgb(21 24 16);
-  --color-card-bg: rgb(47 36 28);
-  --color-text: rgb(255, 255, 255);
-  --color-button: rgb(249 178 123);
-  --color-input-border: rgb(249 178 123);
-  --color-border: rgb(249 178 123);
-  --color-low-opacity-border: rgba(249, 178, 123, 0.2);
-  --color-icon-dark: rgb(2, 2, 2);
-  --color-highlight: rgb(249 178 123);
-  --overlay-bg: rgba(86, 30, 30, 0.5);
+  --color-bg: rgb(8, 10, 15);
+  --color-card-bg: rgb(17, 20, 28);
+  --color-text: rgb(240, 243, 248);
+  --color-button: rgb(0, 225, 255);
+  --color-input-border: rgb(30, 35, 45);
+  --color-border: rgb(40, 45, 60);
+  --color-highlight: rgb(0, 225, 255);
+  --color-low-opacity-border: rgba(0, 225, 255, 0.15);
+  --overlay-bg: rgba(5, 7, 10, 0.95);
+  --color-box-shadow: rgba(0, 0, 0, 0.9);
+  --color-icon-dark: rgb(0, 0, 0);
   --color-icon-light: rgb(255, 255, 255);
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  --color-gradient-bg: rgba(188, 142, 255, 0.08);
 
   /* Font weights */
   --font-regular: 400;
@@ -18,11 +22,9 @@
   --font-bold: 700;
 
   /* Font family */
-  --font-main: "Nunito", sans-serif;
+  --font-main: "Inter", sans-serif;
+  --font-mono: "Fira Code", "JetBrains Mono", monospace;
 
   /* Radius */
-  --radius: 8px;
-
-  /* Shadows */
-  --shadow: 0 4px 10px rgba(249, 178, 123, 0.2);
+  --radius: 12px;
 }

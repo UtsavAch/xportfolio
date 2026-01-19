@@ -12,6 +12,11 @@ export const StyledWrapper = styled.section`
   /* Default: Small Screens (Mobile) */
   width: 95%;
 
+  background-image:
+    linear-gradient(var(--color-gradient-bg) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-gradient-bg) 1px, transparent 1px);
+  background-size: 40px 40px;
+
   /* Medium Screens (Tablets/Ipads) */
   @media (min-width: 768px) {
     width: 80%;
