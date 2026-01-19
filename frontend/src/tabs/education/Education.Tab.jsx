@@ -14,6 +14,7 @@ import Confirm from "../../components/confirm/Confirm.Component";
 import formatDate from "../../helpers/formatDate";
 import SectionTitle from "../../components/sectiontitle/SectionTitle.Component";
 import Footer from "../../components/footer/Footer.Component";
+import GridWrapper from "../../components/gridwrapper/GridWrapper.Component";
 
 // Import Styled Components
 import { HeaderContainer, ActionGroup, ExternalLink } from "./Education.Style";
@@ -179,29 +180,31 @@ const EducationTab = () => {
         )}
       </HeaderContainer>
 
-      {education.map((edu) => (
-        <Card
-          key={edu.id}
-          title={edu.university}
-          subtitle={edu.degree}
-          meta={`${formatDate(edu.start_date)} – ${formatDate(edu.end_date)}`}
-          description={edu.description}
-          extra={
-            isLoggedIn && (
-              <ActionGroup>
-                <CmsButton
-                  type="edit"
-                  onClick={() => handleEditClick(edu, "education")}
-                />
-                <CmsButton
-                  type="delete"
-                  onClick={() => handleDeleteClick(edu.id, "education")}
-                />
-              </ActionGroup>
-            )
-          }
-        />
-      ))}
+      <GridWrapper>
+        {education.map((edu) => (
+          <Card
+            key={edu.id}
+            title={edu.university}
+            subtitle={edu.degree}
+            meta={`${formatDate(edu.start_date)} – ${formatDate(edu.end_date)}`}
+            description={edu.description}
+            extra={
+              isLoggedIn && (
+                <ActionGroup>
+                  <CmsButton
+                    type="edit"
+                    onClick={() => handleEditClick(edu, "education")}
+                  />
+                  <CmsButton
+                    type="delete"
+                    onClick={() => handleDeleteClick(edu.id, "education")}
+                  />
+                </ActionGroup>
+              )
+            }
+          />
+        ))}
+      </GridWrapper>
 
       <HeaderContainer $marginTop="2rem">
         <SectionTitle icon={<UilBookOpen size="28" />}>Courses</SectionTitle>
@@ -214,39 +217,41 @@ const EducationTab = () => {
         )}
       </HeaderContainer>
 
-      {courses.map((course) => (
-        <Card
-          key={course.id}
-          title={course.title}
-          meta={`${formatDate(course.start_date)} – ${formatDate(course.end_date)}`}
-          description={course.description}
-          extra={
-            <ActionGroup $gap="15px">
-              {course.link && (
-                <ExternalLink
-                  href={course.link}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Link
-                </ExternalLink>
-              )}
-              {isLoggedIn && (
-                <>
-                  <CmsButton
-                    type="edit"
-                    onClick={() => handleEditClick(course, "course")}
-                  />
-                  <CmsButton
-                    type="delete"
-                    onClick={() => handleDeleteClick(course.id, "course")}
-                  />
-                </>
-              )}
-            </ActionGroup>
-          }
-        />
-      ))}
+      <GridWrapper>
+        {courses.map((course) => (
+          <Card
+            key={course.id}
+            title={course.title}
+            meta={`${formatDate(course.start_date)} – ${formatDate(course.end_date)}`}
+            description={course.description}
+            extra={
+              <ActionGroup $gap="15px">
+                {course.link && (
+                  <ExternalLink
+                    href={course.link}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Link
+                  </ExternalLink>
+                )}
+                {isLoggedIn && (
+                  <>
+                    <CmsButton
+                      type="edit"
+                      onClick={() => handleEditClick(course, "course")}
+                    />
+                    <CmsButton
+                      type="delete"
+                      onClick={() => handleDeleteClick(course.id, "course")}
+                    />
+                  </>
+                )}
+              </ActionGroup>
+            }
+          />
+        ))}
+      </GridWrapper>
 
       <CmsOverlay
         isOpen={isOverlayOpen}

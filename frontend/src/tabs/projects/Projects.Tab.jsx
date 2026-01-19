@@ -12,6 +12,7 @@ import ErrorMessage from "../../components/error/Error.Component";
 import Confirm from "../../components/confirm/Confirm.Component";
 import SectionTitle from "../../components/sectiontitle/SectionTitle.Component";
 import Footer from "../../components/footer/Footer.Component";
+import GridWrapper from "../../components/gridwrapper/GridWrapper.Component";
 
 // Import Styled Components
 import { HeaderContainer, ActionGroup, ExternalLink } from "./Projects.Style";
@@ -141,47 +142,49 @@ const ProjectsTab = () => {
 
       {projects.length === 0 && !error && <p>No projects found.</p>}
 
-      {projects.map((project) => (
-        <Card
-          key={project.id}
-          title={project.title}
-          description={project.description}
-          extra={
-            <ActionGroup $gap="15px">
-              {project.link && (
-                <ExternalLink
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  View Project
-                </ExternalLink>
-              )}
-              {project.video_url && (
-                <ExternalLink
-                  href={project.video_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Watch Demo
-                </ExternalLink>
-              )}
-              {isLoggedIn && (
-                <>
-                  <CmsButton
-                    type="edit"
-                    onClick={() => handleEditClick(project)}
-                  />
-                  <CmsButton
-                    type="delete"
-                    onClick={() => handleDeleteClick(project.id)}
-                  />
-                </>
-              )}
-            </ActionGroup>
-          }
-        />
-      ))}
+      <GridWrapper>
+        {projects.map((project) => (
+          <Card
+            key={project.id}
+            title={project.title}
+            description={project.description}
+            extra={
+              <ActionGroup $gap="15px">
+                {project.link && (
+                  <ExternalLink
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    View Project
+                  </ExternalLink>
+                )}
+                {project.video_url && (
+                  <ExternalLink
+                    href={project.video_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Watch Demo
+                  </ExternalLink>
+                )}
+                {isLoggedIn && (
+                  <>
+                    <CmsButton
+                      type="edit"
+                      onClick={() => handleEditClick(project)}
+                    />
+                    <CmsButton
+                      type="delete"
+                      onClick={() => handleDeleteClick(project.id)}
+                    />
+                  </>
+                )}
+              </ActionGroup>
+            }
+          />
+        ))}
+      </GridWrapper>
 
       <CmsOverlay
         isOpen={isOverlayOpen}

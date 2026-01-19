@@ -22,6 +22,7 @@ import CmsButton from "../../components/cmsbutton/CmsButton.Component";
 import ErrorMessage from "../../components/error/Error.Component";
 import SectionTitle from "../../components/sectiontitle/SectionTitle.Component";
 import Footer from "../../components/footer/Footer.Component";
+import GridWrapper from "../../components/gridwrapper/GridWrapper.Component";
 
 // Styled Components
 import {
@@ -36,7 +37,6 @@ import {
   CVButtonWrapper,
   LocationWrapper,
   BioText,
-  SkillsGrid,
   SkillList,
   SkillBadge,
   LogoutWrapper,
@@ -161,7 +161,7 @@ const ProfileTab = () => {
 
       <SectionTitle icon={<UilSetting size="28" />}>Expertise</SectionTitle>
 
-      <SkillsGrid>
+      <GridWrapper columns={3}>
         {Object.entries(skills).map(([type, skillsList]) => (
           <Card key={type} title={type}>
             <SkillList>
@@ -171,7 +171,7 @@ const ProfileTab = () => {
             </SkillList>
           </Card>
         ))}
-      </SkillsGrid>
+      </GridWrapper>
 
       {isLoggedIn && (
         <LogoutWrapper>

@@ -13,6 +13,7 @@ import Confirm from "../../components/confirm/Confirm.Component";
 import formatDate from "../../helpers/formatDate";
 import SectionTitle from "../../components/sectiontitle/SectionTitle.Component";
 import Footer from "../../components/footer/Footer.Component";
+import GridWrapper from "../../components/gridwrapper/GridWrapper.Component";
 
 // Import Styled Components
 import { HeaderContainer, ActionGroup, LocationText } from "./Experience.Style";
@@ -147,32 +148,37 @@ const ExperienceTab = () => {
 
       {experiences.length === 0 && !error && <p>No experiences found.</p>}
 
-      {experiences.map((exp) => (
-        <Card
-          key={exp.id}
-          title={exp.position}
-          subtitle={exp.company}
-          meta={`${formatDate(exp.start_date)} – ${
-            formatDate(exp.end_date) || "Present"
-          }`}
-          description={exp.description}
-          extra={
-            <div style={{ display: "flex", alignItems: "center" }}>
-              <LocationText>{exp.location}</LocationText>
+      <GridWrapper>
+        {experiences.map((exp) => (
+          <Card
+            key={exp.id}
+            title={exp.position}
+            subtitle={exp.company}
+            meta={`${formatDate(exp.start_date)} – ${
+              formatDate(exp.end_date) || "Present"
+            }`}
+            description={exp.description}
+            extra={
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <LocationText>{exp.location}</LocationText>
 
-              {isLoggedIn && (
-                <ActionGroup>
-                  <CmsButton type="edit" onClick={() => handleEditClick(exp)} />
-                  <CmsButton
-                    type="delete"
-                    onClick={() => handleDeleteClick(exp.id)}
-                  />
-                </ActionGroup>
-              )}
-            </div>
-          }
-        />
-      ))}
+                {isLoggedIn && (
+                  <ActionGroup>
+                    <CmsButton
+                      type="edit"
+                      onClick={() => handleEditClick(exp)}
+                    />
+                    <CmsButton
+                      type="delete"
+                      onClick={() => handleDeleteClick(exp.id)}
+                    />
+                  </ActionGroup>
+                )}
+              </div>
+            }
+          />
+        ))}
+      </GridWrapper>
 
       <CmsOverlay
         isOpen={isOverlayOpen}
