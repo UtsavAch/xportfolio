@@ -163,23 +163,6 @@ export const SkillsGrid = styled.div`
   gap: 1.5rem;
 `;
 
-export const SkillList = styled.ul`
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-`;
-
-export const SkillBadge = styled.li`
-  padding: 5px 12px;
-  border-radius: 20px;
-  font-size: 0.85rem;
-  border: 1px solid var(--color-low-opacity-border);
-  color: var(--color-text);
-`;
-
 export const LogoutWrapper = styled.div`
   margin-top: 4rem;
   display: flex;

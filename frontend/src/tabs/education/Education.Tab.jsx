@@ -17,7 +17,7 @@ import Footer from "../../components/footer/Footer.Component";
 import GridWrapper from "../../components/gridwrapper/GridWrapper.Component";
 
 // Import Styled Components
-import { HeaderContainer, ActionGroup, ExternalLink } from "./Education.Style";
+import { HeaderContainer, ActionGroup } from "./Education.Style";
 
 const educationFields = [
   { name: "university", label: "University", type: "text" },
@@ -187,6 +187,7 @@ const EducationTab = () => {
             title={edu.university}
             subtitle={edu.degree}
             meta={`${formatDate(edu.start_date)} – ${formatDate(edu.end_date)}`}
+            location="Porto, Portugal" // Static address for demonstration
             description={edu.description}
             extra={
               isLoggedIn && (
@@ -223,18 +224,10 @@ const EducationTab = () => {
             key={course.id}
             title={course.title}
             meta={`${formatDate(course.start_date)} – ${formatDate(course.end_date)}`}
+            links={{ url: "somelink.com" }} // Static link for demonstration
             description={course.description}
             extra={
               <ActionGroup $gap="15px">
-                {course.link && (
-                  <ExternalLink
-                    href={course.link}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Link
-                  </ExternalLink>
-                )}
                 {isLoggedIn && (
                   <>
                     <CmsButton

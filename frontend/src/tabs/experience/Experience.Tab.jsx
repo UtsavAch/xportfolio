@@ -16,7 +16,7 @@ import Footer from "../../components/footer/Footer.Component";
 import GridWrapper from "../../components/gridwrapper/GridWrapper.Component";
 
 // Import Styled Components
-import { HeaderContainer, ActionGroup, LocationText } from "./Experience.Style";
+import { HeaderContainer, ActionGroup } from "./Experience.Style";
 
 const experienceFields = [
   { name: "company", label: "Company", type: "text" },
@@ -157,11 +157,10 @@ const ExperienceTab = () => {
             meta={`${formatDate(exp.start_date)} – ${
               formatDate(exp.end_date) || "Present"
             }`}
+            location={exp.location}
             description={exp.description}
             extra={
               <div style={{ display: "flex", alignItems: "center" }}>
-                <LocationText>{exp.location}</LocationText>
-
                 {isLoggedIn && (
                   <ActionGroup>
                     <CmsButton

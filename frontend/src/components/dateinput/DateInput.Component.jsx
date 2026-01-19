@@ -17,7 +17,9 @@ const DateInput = ({ value, onChange, placeholder }) => {
         dateFormat="dd/MM/yyyy"
         placeholderText={placeholder}
         customInput={<StyledInput />}
-        // This allows us to add custom elements inside the calendar popup
+        showMonthDropdown
+        showYearDropdown
+        dropdownMode="select"
         shouldCloseOnSelect={true}
       >
         <CalendarFooter>

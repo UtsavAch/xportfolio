@@ -52,9 +52,7 @@ const CmsOverlay = ({
   };
 
   const title =
-    mode === "create"
-      ? `Create new ${resourceName} entry`
-      : `Update ${resourceName} entry`;
+    mode === "create" ? `New ${resourceName}` : `Update ${resourceName}`;
 
   return (
     <StyledOverlay.OverlayBackground onClick={onClose}>
@@ -95,15 +93,15 @@ const CmsOverlay = ({
               )}
             </div>
           ))}
-          <StyledOverlay.ButtonGroup>
-            <StyledOverlay.CancelButton type="button" onClick={onClose}>
-              Cancel
-            </StyledOverlay.CancelButton>
-            <Button type="secondary" isSubmit>
-              {mode === "create" ? "Create" : "Update"}
-            </Button>
-          </StyledOverlay.ButtonGroup>
         </StyledOverlay.Form>
+        <StyledOverlay.ButtonGroup>
+          <StyledOverlay.CancelButton type="button" onClick={onClose}>
+            Cancel
+          </StyledOverlay.CancelButton>
+          <Button type="secondary" isSubmit>
+            {mode === "create" ? "Create" : "Update"}
+          </Button>
+        </StyledOverlay.ButtonGroup>
       </StyledOverlay.ModalContainer>
     </StyledOverlay.OverlayBackground>
   );

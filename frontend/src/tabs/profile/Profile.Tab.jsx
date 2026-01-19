@@ -37,8 +37,6 @@ import {
   CVButtonWrapper,
   LocationWrapper,
   BioText,
-  SkillList,
-  SkillBadge,
   LogoutWrapper,
 } from "./Profile.Style";
 
@@ -163,13 +161,11 @@ const ProfileTab = () => {
 
       <GridWrapper columns={3}>
         {Object.entries(skills).map(([type, skillsList]) => (
-          <Card key={type} title={type}>
-            <SkillList>
-              {skillsList.map((skill) => (
-                <SkillBadge key={skill.id}>{skill.name}</SkillBadge>
-              ))}
-            </SkillList>
-          </Card>
+          <Card
+            key={type}
+            title={type}
+            tags={skillsList.map((skill) => skill.name)}
+          />
         ))}
       </GridWrapper>
 

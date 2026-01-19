@@ -15,7 +15,7 @@ import Footer from "../../components/footer/Footer.Component";
 import GridWrapper from "../../components/gridwrapper/GridWrapper.Component";
 
 // Import Styled Components
-import { HeaderContainer, ActionGroup, ExternalLink } from "./Projects.Style";
+import { HeaderContainer, ActionGroup } from "./Projects.Style";
 
 const projectFields = [
   { name: "title", label: "Project Title", type: "text" },
@@ -148,26 +148,14 @@ const ProjectsTab = () => {
             key={project.id}
             title={project.title}
             description={project.description}
+            tags={["react", "node", "mongodb", "springboot", "java", "nothing"]} // Static tags for demonstration
+            links={{
+              url: project.link,
+              github: "somelink.com",
+              video: project.video_url,
+            }} // Static GitHub link for demonstration
             extra={
               <ActionGroup $gap="15px">
-                {project.link && (
-                  <ExternalLink
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    View Project
-                  </ExternalLink>
-                )}
-                {project.video_url && (
-                  <ExternalLink
-                    href={project.video_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Watch Demo
-                  </ExternalLink>
-                )}
                 {isLoggedIn && (
                   <>
                     <CmsButton

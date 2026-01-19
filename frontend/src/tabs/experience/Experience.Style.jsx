@@ -12,9 +12,3 @@ export const ActionGroup = styled.div`
   align-items: center;
   gap: ${(props) => props.$gap || "10px"};
 `;
-
-export const LocationText = styled.span`
-  color: var(--text-color-secondary);
-  font-size: 0.9rem;
-  margin-right: 10px;
-`;
