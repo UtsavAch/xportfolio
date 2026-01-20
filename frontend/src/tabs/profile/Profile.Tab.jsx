@@ -197,10 +197,7 @@ const ProfileTab = () => {
 
       <ProfileHero>
         <PhotoContainer>
-          <img
-            src={profile.profile_photo_url || "https://i.pravatar.cc/300"}
-            alt={profile.name}
-          />
+          <img src={profile.profile_photo_url} alt={profile.name} />
         </PhotoContainer>
 
         <ProfileInfo>
@@ -275,7 +272,7 @@ const ProfileTab = () => {
         )}
       </TitleWrapper>
 
-      <GridWrapper columns={3}>
+      <GridWrapper>
         {Object.entries(skills).map(([type, skillsList]) => (
           <Card
             key={type}

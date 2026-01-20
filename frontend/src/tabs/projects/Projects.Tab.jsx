@@ -65,10 +65,17 @@ const ProjectsTab = () => {
     setIsOverlayOpen(true);
   };
 
+  // Converts the array ["tag1", "tag2"] -> string "tag1, tag2" for the input field
   const handleEditClick = (item) => {
     if (!isLoggedIn) return;
     setOverlayMode("update");
-    setEditingItem(item);
+    const itemToEdit = { ...item };
+
+    if (Array.isArray(itemToEdit.tags)) {
+      itemToEdit.tags = itemToEdit.tags.join(", ");
+    }
+
+    setEditingItem(itemToEdit);
     setIsOverlayOpen(true);
   };
 
@@ -92,11 +99,19 @@ const ProjectsTab = () => {
     }
   };
 
+  // Converts the string "tag1, tag2" -> array ["tag1", "tag2"] for the backend
   const handleFormSubmit = async (formData, mode) => {
     if (!isLoggedIn) return;
 
     const cleanData = {};
     projectFields.forEach((f) => (cleanData[f.name] = formData[f.name]));
+
+    if (typeof cleanData.tags === "string") {
+      cleanData.tags = cleanData.tags
+        .split(",") // Split by comma
+        .map((tag) => tag.trim()) // Remove whitespace around words
+        .filter((tag) => tag !== ""); // Remove empty entries
+    }
 
     try {
       if (mode === "create") {
@@ -112,6 +127,7 @@ const ProjectsTab = () => {
       }
       setIsOverlayOpen(false);
     } catch (err) {
+      console.error(err); // Good for debugging
       setError("Failed to save project.");
     }
   };
