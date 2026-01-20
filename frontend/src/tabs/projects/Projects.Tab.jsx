@@ -13,6 +13,7 @@ import Confirm from "../../components/confirm/Confirm.Component";
 import SectionTitle from "../../components/sectiontitle/SectionTitle.Component";
 import Footer from "../../components/footer/Footer.Component";
 import GridWrapper from "../../components/gridwrapper/GridWrapper.Component";
+import Spinner from "../../components/spinner/Spinner.Component";
 
 // Import Styled Components
 import { HeaderContainer, ActionGroup } from "./Projects.Style";
@@ -131,7 +132,13 @@ const ProjectsTab = () => {
     }
   };
 
-  if (loading) return <p>Loading projects...</p>;
+  if (loading) {
+    return (
+      <TabWrapper>
+        <Spinner message="Loading projects..." />
+      </TabWrapper>
+    );
+  }
 
   return (
     <TabWrapper>

@@ -29,6 +29,7 @@ import SectionTitle from "../../components/sectiontitle/SectionTitle.Component";
 import Footer from "../../components/footer/Footer.Component";
 import GridWrapper from "../../components/gridwrapper/GridWrapper.Component";
 import Confirm from "../../components/confirm/Confirm.Component";
+import Spinner from "../../components/spinner/Spinner.Component";
 
 import {
   ProfileHero,
@@ -196,8 +197,13 @@ const ProfileTab = () => {
     { name: "type", label: "Skill Type (e.g., Languages, Frameworks)" },
     { name: "name", label: "Skill Name (e.g., React, Python)" },
   ];
-
-  if (loading) return <p>Loading profile...</p>;
+  if (loading) {
+    return (
+      <TabWrapper>
+        <Spinner message="Loading profile and skills..." />
+      </TabWrapper>
+    );
+  }
   if (!profile) return null;
 
   return (

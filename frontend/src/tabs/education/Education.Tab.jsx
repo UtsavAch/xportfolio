@@ -15,6 +15,7 @@ import formatDate from "../../helpers/formatDate";
 import SectionTitle from "../../components/sectiontitle/SectionTitle.Component";
 import Footer from "../../components/footer/Footer.Component";
 import GridWrapper from "../../components/gridwrapper/GridWrapper.Component";
+import Spinner from "../../components/spinner/Spinner.Component";
 
 // Import Styled Components
 import { HeaderContainer, ActionGroup } from "./Education.Style";
@@ -153,7 +154,13 @@ const EducationTab = () => {
     }
   };
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) {
+    return (
+      <TabWrapper>
+        <Spinner message="Loading educations and courses..." />
+      </TabWrapper>
+    );
+  }
 
   return (
     <TabWrapper>
@@ -225,7 +232,7 @@ const EducationTab = () => {
             key={course.id}
             title={course.title}
             meta={`${formatDate(course.start_date)} – ${formatDate(course.end_date)}`}
-            links={{ url: "somelink.com" }} // Static link for demonstration
+            links={{ url: course.url }}
             description={course.description}
             extra={
               <ActionGroup $gap="15px">

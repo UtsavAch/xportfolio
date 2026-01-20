@@ -14,6 +14,7 @@ import formatDate from "../../helpers/formatDate";
 import SectionTitle from "../../components/sectiontitle/SectionTitle.Component";
 import Footer from "../../components/footer/Footer.Component";
 import GridWrapper from "../../components/gridwrapper/GridWrapper.Component";
+import Spinner from "../../components/spinner/Spinner.Component";
 
 // Import Styled Components
 import { HeaderContainer, ActionGroup } from "./Experience.Style";
@@ -118,7 +119,13 @@ const ExperienceTab = () => {
     }
   };
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) {
+    return (
+      <TabWrapper>
+        <Spinner message="Loading experiences..." />
+      </TabWrapper>
+    );
+  }
 
   return (
     <TabWrapper>
