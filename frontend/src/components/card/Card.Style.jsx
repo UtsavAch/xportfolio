@@ -47,6 +47,7 @@ export const Subtitle = styled.span`
   font-weight: var(--font-regular);
   display: block;
   margin-top: 4px;
+  margin-bottom: 4px;
 `;
 
 export const Meta = styled.div`

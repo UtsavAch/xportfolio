@@ -22,6 +22,7 @@ import { HeaderContainer, ActionGroup } from "./Education.Style";
 const educationFields = [
   { name: "university", label: "University", type: "text" },
   { name: "degree", label: "Degree", type: "text" },
+  { name: "location", label: "Location", type: "text" },
   { name: "start_date", label: "Start Date", type: "date" },
   { name: "end_date", label: "End Date", type: "date" },
   { name: "description", label: "Description", type: "text" },
@@ -186,8 +187,8 @@ const EducationTab = () => {
             key={edu.id}
             title={edu.university}
             subtitle={edu.degree}
-            meta={`${formatDate(edu.start_date)} – ${formatDate(edu.end_date)}`}
-            location="Porto, Portugal" // Static address for demonstration
+            meta={`${formatDate(edu.start_date)} – ${formatDate(edu.end_date) || "Present"}`}
+            location={edu.location}
             description={edu.description}
             extra={
               isLoggedIn && (

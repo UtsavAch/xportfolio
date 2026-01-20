@@ -21,6 +21,8 @@ const projectFields = [
   { name: "title", label: "Project Title", type: "text" },
   { name: "link", label: "Project Link", type: "text" },
   { name: "video_url", label: "Video URL", type: "text" },
+  { name: "github_url", label: "GitHub URL", type: "text" },
+  { name: "tags", label: "Tags (comma separated)", type: "text" },
   { name: "description", label: "Description", type: "text" }, // or "textarea" if your CmsOverlay supports it
 ];
 
@@ -148,12 +150,12 @@ const ProjectsTab = () => {
             key={project.id}
             title={project.title}
             description={project.description}
-            tags={["react", "node", "mongodb", "springboot", "java", "nothing"]} // Static tags for demonstration
+            tags={project.tags}
             links={{
               url: project.link,
-              github: "somelink.com",
+              github: project.github_url,
               video: project.video_url,
-            }} // Static GitHub link for demonstration
+            }}
             extra={
               <ActionGroup $gap="15px">
                 {isLoggedIn && (

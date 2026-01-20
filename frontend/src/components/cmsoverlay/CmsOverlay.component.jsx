@@ -115,11 +115,3 @@ const CmsOverlay = ({
 };
 
 export default CmsOverlay;
-
-/* <Input
-  id={field.name}
-  type={field.type || "text"}
-  value={formData[field.name] || ""}
-  onChange={(e) => handleChange(field.name, e.target.value)}
-  // required
-/>; */
