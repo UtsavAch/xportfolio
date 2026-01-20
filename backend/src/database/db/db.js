@@ -9,16 +9,41 @@ class Database {
     this.currentTransaction = null;
   }
 
+  // async connect(config) {
+  //   this.config = config;
+  //   try {
+  //     this.pool = new Pool(
+  //       typeof config === "string"
+  //         ? { connectionString: config, ssl: { rejectUnauthorized: false } }
+  //         : config,
+  //     );
+  //     logger.info("Connected to database");
+  //     await this.pool.query("SELECT 1");
+  //   } catch (err) {
+  //     logger.error("Database connection error:", err);
+  //     throw err;
+  //   }
+  // }
+
   async connect(config) {
+    if (this.pool) {
+      logger.warn("Database already connected. Reusing existing pool.");
+      return;
+    }
+
     this.config = config;
+
     try {
-      this.pool = new Pool(
-        typeof config === "string"
-          ? { connectionString: config, ssl: { rejectUnauthorized: false } }
-          : config
-      );
-      logger.info("Connected to database");
+      this.pool = new Pool({
+        ...(typeof config === "string" ? { connectionString: config } : config),
+        ssl: { rejectUnauthorized: false },
+        max: 5,
+        idleTimeoutMillis: 30000,
+        connectionTimeoutMillis: 10000,
+      });
+
       await this.pool.query("SELECT 1");
+      logger.info("Connected to database");
     } catch (err) {
       logger.error("Database connection error:", err);
       throw err;
