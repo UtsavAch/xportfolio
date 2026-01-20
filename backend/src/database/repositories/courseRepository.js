@@ -10,7 +10,7 @@ class CourseRepository {
     const result = await db.query(
       `SELECT id, title, start_date, end_date, link, description, created_at, updated_at
        FROM xportfolio.courses
-       ORDER BY start_date DESC`
+       ORDER BY start_date DESC`,
     );
     return result.rows.map(
       (row) =>
@@ -22,8 +22,8 @@ class CourseRepository {
           row.link,
           row.description,
           row.created_at,
-          row.updated_at
-        )
+          row.updated_at,
+        ),
     );
   }
 
@@ -35,7 +35,7 @@ class CourseRepository {
       `SELECT id, title, start_date, end_date, link, description, created_at, updated_at
        FROM xportfolio.courses
        WHERE id = $1`,
-      [id]
+      [id],
     );
     if (result.rows.length === 0) return null;
     const row = result.rows[0];
@@ -47,7 +47,7 @@ class CourseRepository {
       row.link,
       row.description,
       row.created_at,
-      row.updated_at
+      row.updated_at,
     );
   }
 
@@ -65,7 +65,7 @@ class CourseRepository {
         course.end_date,
         course.link,
         course.description,
-      ]
+      ],
     );
     const row = result.rows[0];
     return new Course(
@@ -76,7 +76,7 @@ class CourseRepository {
       row.link,
       row.description,
       row.created_at,
-      row.updated_at
+      row.updated_at,
     );
   }
 
@@ -96,7 +96,7 @@ class CourseRepository {
         updates.link,
         updates.description,
         id,
-      ]
+      ],
     );
     if (result.rows.length === 0) return null;
     const row = result.rows[0];
@@ -108,7 +108,7 @@ class CourseRepository {
       row.link,
       row.description,
       row.created_at,
-      row.updated_at
+      row.updated_at,
     );
   }
 
@@ -120,7 +120,7 @@ class CourseRepository {
       `DELETE FROM xportfolio.courses
        WHERE id = $1
        RETURNING id, title, start_date, end_date, link, description, created_at, updated_at`,
-      [id]
+      [id],
     );
     if (result.rows.length === 0) return null;
     const row = result.rows[0];
@@ -132,7 +132,7 @@ class CourseRepository {
       row.link,
       row.description,
       row.created_at,
-      row.updated_at
+      row.updated_at,
     );
   }
 }

@@ -61,11 +61,11 @@ class CourseService {
    */
   async create(data) {
     try {
-      if (!data || !data.title || !data.start_date || !data.end_date) {
+      if (!data || !data.title || !data.start_date) {
         return {
           success: false,
           status: 400,
-          error: "title, start_date, and end_date are required",
+          error: "title, and start_date are required",
         };
       }
 
@@ -92,16 +92,11 @@ class CourseService {
    */
   async update(id, updates) {
     try {
-      if (
-        !updates ||
-        !updates.title ||
-        !updates.start_date ||
-        !updates.end_date
-      ) {
+      if (!updates || !updates.title || !updates.start_date) {
         return {
           success: false,
           status: 400,
-          error: "title, start_date, and end_date are required",
+          error: "title, and start_date are required",
         };
       }
 

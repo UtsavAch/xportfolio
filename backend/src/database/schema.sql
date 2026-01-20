@@ -29,6 +29,7 @@ CREATE TABLE IF NOT EXISTS xportfolio.education (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   degree TEXT NOT NULL,
   university TEXT NOT NULL,
+  location TEXT NOT NULL,
   start_date DATE NOT NULL,
   end_date DATE,
   description TEXT,
@@ -58,6 +59,8 @@ CREATE TABLE IF NOT EXISTS xportfolio.projects (
   link TEXT,
   description TEXT,
   video_url TEXT,
+  github_url TEXT,
+  tags TEXT[] DEFAULT '{}',
   created_at TIMESTAMPTZ DEFAULT NOW(),
   updated_at TIMESTAMPTZ DEFAULT NOW()
 );

@@ -6,8 +6,9 @@ import educationService from "../services/educationService.js";
 const educationSchema = Joi.object({
   degree: Joi.string().min(1).required(),
   university: Joi.string().min(1).required(),
+  location: Joi.string().min(1).required(),
   start_date: Joi.date().required(),
-  end_date: Joi.date().required(),
+  end_date: Joi.date().allow(null).optional(),
   description: Joi.string().allow("").optional(),
 });
 

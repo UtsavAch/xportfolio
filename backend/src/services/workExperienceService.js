@@ -66,14 +66,12 @@ class WorkExperienceService {
         !data.position ||
         !data.company ||
         !data.location ||
-        !data.start_date ||
-        !data.end_date
+        !data.start_date
       ) {
         return {
           success: false,
           status: 400,
-          error:
-            "position, company, location, start_date and end_date are required",
+          error: "position, company, location, and start_date are required",
         };
       }
 
@@ -105,14 +103,12 @@ class WorkExperienceService {
         !updates.position ||
         !updates.company ||
         !updates.location ||
-        !updates.start_date ||
-        !updates.end_date
+        !updates.start_date
       ) {
         return {
           success: false,
           status: 400,
-          error:
-            "position, company, location, start_date and end_date are required",
+          error: "position, company, location, and start_date are required",
         };
       }
 

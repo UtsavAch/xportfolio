@@ -14,7 +14,7 @@ export class Profile {
     github,
     location,
     created_at,
-    updated_at
+    updated_at,
   ) {
     this.id = id;
     this.name = name;
@@ -39,15 +39,17 @@ export class Education {
     id,
     degree,
     university,
+    location,
     start_date,
     end_date,
     description,
     created_at,
-    updated_at
+    updated_at,
   ) {
     this.id = id;
     this.degree = degree;
     this.university = university;
+    this.location = location;
     this.start_date = start_date;
     this.end_date = end_date;
     this.description = description;
@@ -67,7 +69,7 @@ export class WorkExperience {
     end_date,
     description,
     created_at,
-    updated_at
+    updated_at,
   ) {
     this.id = id;
     this.position = position;
@@ -83,12 +85,24 @@ export class WorkExperience {
 
 //Project Model
 export class Project {
-  constructor(id, title, link, description, video_url, created_at, updated_at) {
+  constructor(
+    id,
+    title,
+    link,
+    description,
+    video_url,
+    github_url,
+    tags,
+    created_at,
+    updated_at,
+  ) {
     this.id = id;
     this.title = title;
     this.link = link;
     this.description = description;
     this.video_url = video_url;
+    this.github_url = github_url;
+    this.tags = tags || [];
     this.created_at = created_at;
     this.updated_at = updated_at;
   }
@@ -114,7 +128,7 @@ export class Course {
     link,
     description,
     created_at,
-    updated_at
+    updated_at,
   ) {
     this.id = id;
     this.title = title;

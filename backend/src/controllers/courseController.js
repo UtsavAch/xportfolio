@@ -6,7 +6,7 @@ import courseService from "../services/courseService.js";
 const courseSchema = Joi.object({
   title: Joi.string().min(1).required(),
   start_date: Joi.date().required(),
-  end_date: Joi.date().required(),
+  end_date: Joi.date().allow(null).optional(),
   link: Joi.string().uri().allow("").optional(),
   description: Joi.string().allow("").optional(),
 });

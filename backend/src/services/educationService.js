@@ -65,13 +65,13 @@ class EducationService {
         !data ||
         !data.degree ||
         !data.university ||
-        !data.start_date ||
-        !data.end_date
+        !data.location ||
+        !data.start_date
       ) {
         return {
           success: false,
           status: 400,
-          error: "degree, university, start_date and end_date are required",
+          error: "degree, university, location and start_date are required",
         };
       }
 
@@ -102,13 +102,13 @@ class EducationService {
         !updates ||
         !updates.degree ||
         !updates.university ||
-        !updates.start_date ||
-        !updates.end_date
+        !updates.location ||
+        !updates.start_date
       ) {
         return {
           success: false,
           status: 400,
-          error: "degree, university, start_date and end_date are required",
+          error: "degree, university, location and start_date are required",
         };
       }
 

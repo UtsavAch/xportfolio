@@ -8,6 +8,8 @@ const projectSchema = Joi.object({
   description: Joi.string().min(1).required(),
   link: Joi.string().uri().allow("").optional(),
   video_url: Joi.string().uri().allow("").optional(),
+  github_url: Joi.string().uri().allow("").optional(),
+  tags: Joi.array().items(Joi.string()).optional(),
 });
 
 // UUID validation schema
