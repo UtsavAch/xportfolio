@@ -7,7 +7,7 @@ export const TitleContainer = styled.div`
   margin-bottom: 2rem;
   position: relative;
 
-  /* A small dot/line that "plugs into" the icon */
+  /* A small line that "plugs into" the icon */
   &::before {
     content: "";
     position: absolute;

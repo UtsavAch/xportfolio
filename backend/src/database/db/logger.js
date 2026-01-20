@@ -1,11 +1,11 @@
-// logs for debuging (not necessary maybe)
+// logs for debuging
 import winston from "winston";
 
 const logger = winston.createLogger({
   level: "debug", // Log debug and above (includes info, error)
   format: winston.format.combine(
     winston.format.timestamp(),
-    winston.format.json()
+    winston.format.json(),
   ),
   transports: [
     new winston.transports.File({ filename: "error.log", level: "error" }),
@@ -18,7 +18,7 @@ if (process.env.NODE_ENV !== "production") {
   logger.add(
     new winston.transports.Console({
       format: winston.format.simple(),
-    })
+    }),
   );
 }
 

@@ -93,8 +93,7 @@ const ProfileTab = () => {
   const handleProfileUpdate = async (formData) => {
     try {
       let updatedData = { ...formData };
-
-      // 1. Handle Profile Picture Upload if a file was selected
+      // --- FILE UPLOADS ---
       if (formData.profile_photo_file instanceof File) {
         const photoUrl = await uploadProfilePicture(
           formData.profile_photo_file,
@@ -102,22 +101,36 @@ const ProfileTab = () => {
         updatedData.profile_photo_url = photoUrl;
       }
 
-      // 2. Handle CV Upload if a file was selected
       if (formData.cv_file instanceof File) {
         const cvUrl = await uploadCV(formData.cv_file);
         updatedData.cv_url = cvUrl;
       }
 
-      // Clean up file objects before sending to API
+      // --- CLEANUP ---
+      // 1. Remove file objects
       delete updatedData.profile_photo_file;
       delete updatedData.cv_file;
+      // Remove Metadata fields that backend doesn't need
+      delete updatedData.id; // remove id
+      delete updatedData.created_at; // remove timestamp
+      delete updatedData.updated_at; // remove timestamp
+      // Handle empty strings
+      Object.keys(updatedData).forEach((key) => {
+        if (updatedData[key] === "") {
+          updatedData[key] = null;
+        }
+      });
 
       await profileService.updateProfile(updatedData);
-      await fetchData(); // Refresh data
+
+      await fetchData();
       setIsProfileModalOpen(false);
+      setError(null);
     } catch (err) {
-      console.error(err);
-      setError("Failed to update profile");
+      console.error("Full Error Object:", err);
+      const serverMessage =
+        err.response?.data?.error || "Failed to update profile";
+      setError(serverMessage);
     }
   };
 
@@ -148,8 +161,8 @@ const ProfileTab = () => {
     const skillId = skillToDelete.id;
 
     try {
-      await skillsService.deleteSkill(skillId); //
-      await fetchData(); //
+      await skillsService.deleteSkill(skillId);
+      await fetchData();
       setIsConfirmOpen(false);
       setSkillToDelete(null);
     } catch (err) {
@@ -169,18 +182,14 @@ const ProfileTab = () => {
     { name: "name", label: "Full Name" },
     { name: "title", label: "Job Title" },
     { name: "location", label: "Location" },
-    { name: "bio", label: "Biography" }, // Note: Input component needs to support textarea or use text
+    { name: "bio", label: "Biography" },
     { name: "email", label: "Email" },
     { name: "phone", label: "Phone" },
     { name: "whatsapp", label: "WhatsApp" },
     { name: "linkedin", label: "LinkedIn URL" },
     { name: "github", label: "GitHub URL" },
-    {
-      name: "profile_photo_file",
-      label: "Profile Photo (Upload)",
-      type: "file",
-    },
-    { name: "cv_file", label: "CV (Upload)", type: "file" },
+    { name: "profile_photo_file", label: "Profile Photo", type: "file" },
+    { name: "cv_file", label: "CV (PDF)", type: "file" },
   ];
 
   const skillFields = [
@@ -278,7 +287,7 @@ const ProfileTab = () => {
             key={type}
             title={type}
             tags={skillsList}
-            onTagDelete={isLoggedIn ? handleDeleteClick : null} // Call click handler
+            onTagDelete={isLoggedIn ? handleDeleteClick : null}
           />
         ))}
       </GridWrapper>
@@ -320,7 +329,7 @@ const ProfileTab = () => {
         onConfirm={handleConfirmDelete}
         onCancel={handleCancelDelete}
         confirmText="Delete"
-        variant="danger" // Assuming danger applies red styling
+        variant="danger"
       />
     </TabWrapper>
   );

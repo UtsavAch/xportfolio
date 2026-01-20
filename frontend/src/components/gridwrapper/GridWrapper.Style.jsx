@@ -7,7 +7,7 @@ export const StyledGrid = styled.div`
   gap: 1.5rem;
   margin-top: 1rem;
 
-  /* Dynamic centering: 
+  /*
      If the last child is the first item in a new row, 
      make it span all columns and center it.
   */
@@ -22,7 +22,6 @@ export const StyledGrid = styled.div`
   }
 
   @media (max-width: 1100px) and (min-width: 901px) {
-    /* Optional: reduce columns to 2 if you set a high number like 4 */
     grid-template-columns: repeat(
       ${(props) => Math.min(props.$columns, 2)},
       1fr

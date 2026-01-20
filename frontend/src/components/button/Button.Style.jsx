@@ -16,7 +16,6 @@ export const StyledButton = styled.button`
   transition: all 0.2s ease-in-out;
   outline: none;
 
-  /* Primary: Coloured border, transparent background */
   ${(props) =>
     props.$variant === "primary" &&
     css`
@@ -25,20 +24,16 @@ export const StyledButton = styled.button`
       color: var(--color-button);
 
       &:hover {
-        /* Subtle background using the highlight color at low opacity */
         background-color: rgba(249, 178, 123, 0.1);
       }
     `}
 
-  /* Secondary: Coloured background */
   ${(props) =>
     props.$variant === "secondary" &&
     css`
       background-color: var(--color-button);
       border: 1px solid var(--color-button);
-      color: var(
-        --color-icon-dark
-      ); /* Dark text for contrast on light button */
+      color: var(--color-icon-dark);
 
       &:hover {
         opacity: 0.9;

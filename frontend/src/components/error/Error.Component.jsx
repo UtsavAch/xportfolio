@@ -11,7 +11,6 @@ const ErrorMessage = ({ message, onClear }) => {
       if (onClear) onClear();
     }, 5000);
 
-    // Cleanup the timer if the component unmounts or message changes
     return () => clearTimeout(timer);
   }, [message, onClear]);
 

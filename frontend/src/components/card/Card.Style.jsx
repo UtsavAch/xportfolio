@@ -4,7 +4,6 @@ export const CardContainer = styled.div`
   background-color: var(--color-card-bg);
   backdrop-filter: blur(10px);
   border: 1px solid var(--color-low-opacity-border);
-  /* Use a slightly softer initial shadow */
   box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2);
   border-radius: var(--radius);
   padding: 24px;
@@ -12,7 +11,6 @@ export const CardContainer = styled.div`
   box-sizing: border-box;
   margin-bottom: 1.5rem;
 
-  /* Smooth transition for both movement and shadow */
   transition:
     transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
     box-shadow 0.3s ease;
@@ -20,9 +18,7 @@ export const CardContainer = styled.div`
   font-family: var(--font-main);
 
   &:hover {
-    /* Lift the card up slightly */
     transform: translateY(-8px);
-
     box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.4);
   }
 `;
@@ -77,7 +73,7 @@ export const Description = styled.p`
 `;
 
 export const Divider = styled.div`
-  width: 40px; /* Small, intentional divider */
+  width: 40px;
   height: 2px;
   background: var(--color-low-opacity-border);
   margin: 16px 0;
@@ -86,18 +82,18 @@ export const Divider = styled.div`
 
 export const Footer = styled.div`
   display: flex;
-  flex-direction: row; /* Force single row */
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   margin-top: 20px;
-  gap: 16px; /* Space between tags block and links block */
+  gap: 16px;
 `;
 
 export const TagsContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  flex: 1; /* Occupies all available space, pushing links to the right */
+  flex: 1;
 `;
 
 export const Tag = styled.span`
@@ -133,7 +129,7 @@ export const DeleteTagIcon = styled.span`
 
 export const VerticalDivider = styled.div`
   width: 2px;
-  height: 20px; /* Adjust height to match your tag/icon scale */
+  height: 20px;
   background: var(--color-low-opacity-border);
   flex-shrink: 0;
 `;

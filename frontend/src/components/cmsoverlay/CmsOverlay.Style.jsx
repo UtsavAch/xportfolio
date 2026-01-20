@@ -21,14 +21,12 @@ export const ModalContainer = styled.div`
   background-color: var(--color-card-bg);
   padding: 32px;
   border-radius: 12px;
-  width: 100%; /* Changed from 90% for better mobile fill */
+  width: 100%;
   max-width: 500px;
   color: var(--color-text);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   border: 1px solid var(--color-low-opacity-border);
   font-family: var(--font-main);
-
-  /* Added: restrict height and handle internal layout */
   max-height: 90vh;
   display: flex;
   flex-direction: column;

@@ -18,7 +18,7 @@ export const StyledError = styled.div`
   justify-content: center;
   gap: 10px;
   color: #000;
-  background: #ff4d4d; /* Solid background so it's readable over content */
+  background: #ff4d4d;
   padding: 12px 24px;
   border-radius: 8px;
   font-family: var(--font-main);

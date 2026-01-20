@@ -43,7 +43,6 @@ const CmsOverlay = ({
   if (!isOpen) return null;
 
   const handleChange = (name, value, files) => {
-    // setFormData((prev) => ({ ...prev, [name]: value }));
     setFormData((prev) => ({ ...prev, [name]: files ? files[0] : value }));
   };
 

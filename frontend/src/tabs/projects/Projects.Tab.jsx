@@ -127,7 +127,6 @@ const ProjectsTab = () => {
       }
       setIsOverlayOpen(false);
     } catch (err) {
-      console.error(err); // Good for debugging
       setError("Failed to save project.");
     }
   };

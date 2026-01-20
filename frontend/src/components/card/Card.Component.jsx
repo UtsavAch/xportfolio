@@ -4,7 +4,7 @@ import {
   UilExternalLinkAlt,
   UilGithubAlt,
   UilPlayCircle,
-  UilMultiply, // Import 'X' icon
+  UilMultiply,
 } from "@iconscout/react-unicons";
 
 const Card = ({
@@ -17,12 +17,10 @@ const Card = ({
   links = {},
   children,
   extra,
-  onTagDelete, // [New Prop] Handler for deleting a tag
+  onTagDelete, //Handler for deleting a tag
 }) => {
   return (
     <S.CardContainer>
-      {/* ... (Keep Header, Divider, Description logic exactly as is) ... */}
-
       {(title || extra) && (
         <S.CardHeader>
           <div>
@@ -81,7 +79,6 @@ const Card = ({
           )}
 
           <S.ActionLinks>
-            {/* ... Keep existing links logic ... */}
             {links.video && (
               <a
                 href={links.video}

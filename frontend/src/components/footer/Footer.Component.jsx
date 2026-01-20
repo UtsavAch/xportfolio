@@ -4,7 +4,6 @@ import { StyledFooter, QuoteText, CopyrightText } from "./Footer.Style";
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
-  // You can easily change your quote here
   const favoriteQuote =
     "“It is founded on our thoughts and made up of our thoughts.”";
 

@@ -13,15 +13,13 @@ export const DatePickerWrapper = styled.div`
     font-family: var(--font-main);
     box-shadow: var(--shadow);
     color: var(--color-text);
-    overflow: hidden; /* Ensures footer doesn't break border radius */
+    overflow: hidden;
   }
-
-  /* ... keep your previous styles for header and days ... */
 
   .react-datepicker__header {
     background-color: var(--color-bg);
     border-bottom: 1px solid var(--color-low-opacity-border);
-    padding: 15px 0 10px 0; /* Adjusted padding for the dropdowns */
+    padding: 15px 0 10px 0;
   }
 
   .react-datepicker__navigation {
@@ -40,7 +38,6 @@ export const DatePickerWrapper = styled.div`
     gap: 12px;
   }
 
-  /* Styling the Select elements */
   .react-datepicker__month-select,
   .react-datepicker__year-select {
     background-color: var(--color-card-bg);
@@ -57,7 +54,6 @@ export const DatePickerWrapper = styled.div`
       border-color: var(--color-highlight);
     }
 
-    /* Styling the options inside the dropdown */
     option {
       background-color: var(--color-bg);
       color: var(--color-text);
@@ -89,7 +85,6 @@ export const CalendarFooter = styled.div`
   background-color: var(--color-bg);
   border-top: 1px solid var(--color-low-opacity-border);
 
-  /* Make the close button slightly smaller to fit well */
   button {
     padding: 6px 16px;
     font-size: 0.8rem;

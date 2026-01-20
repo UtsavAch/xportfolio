@@ -1,7 +1,0 @@
-{
-  "migrationsDir": "src/database/migrations",
-  "direction": "up",
-  "databaseUrl": {
-    "env": "DATABASE_URL"
-  }
-}
