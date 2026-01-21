@@ -1,6 +1,7 @@
 // controllers/profileController.js
 import Joi from "joi";
 import profileService from "../services/profileService.js";
+import storageService from "../storage/storageService.js";
 
 // Validation schema for updating profile
 const profileSchema = Joi.object({
@@ -38,20 +39,38 @@ class ProfileController {
    */
   async updateProfile(req, res, next) {
     try {
-      const { error } = profileSchema.validate(req.body);
-      if (error) {
-        return res.status(400).json({ error: error.details[0].message });
-      }
-
       const updates = { ...req.body };
 
+      // 1. Handle Profile Photo if uploaded
+      if (req.files?.profile_photo_file) {
+        const photoFile = req.files.profile_photo_file[0];
+        updates.profile_photo_url = await storageService.uploadFile(
+          photoFile,
+          "profiles",
+        );
+      }
+
+      // 2. Handle CV if uploaded
+      if (req.files?.cv_file) {
+        const cvFile = req.files.cv_file[0];
+        updates.cv_url = await storageService.uploadFile(cvFile, "documents");
+      }
+
+      // 3. Remove the internal file objects from the updates object
+      // so they don't try to get saved to the database text columns
+      delete updates.profile_photo_file;
+      delete updates.cv_file;
+
+      // 4. Update the database
       const result = await profileService.updateProfile(updates);
+
       if (!result.success) {
         return res.status(result.status).json({ error: result.error });
       }
 
       res.json(result.data);
     } catch (err) {
+      console.error("Controller Error:", err);
       next(err);
     }
   }

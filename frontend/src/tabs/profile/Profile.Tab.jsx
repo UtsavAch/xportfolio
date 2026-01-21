@@ -10,12 +10,8 @@ import {
   UilSetting,
 } from "@iconscout/react-unicons";
 
-import profileService from "../../management/services/profileService";
-import skillsService from "../../management/services/skillsService";
-import {
-  uploadProfilePicture,
-  uploadCV,
-} from "../../management/storage/storageProvider";
+import profileService from "../../services/profileService";
+import skillsService from "../../services/skillsService";
 import { useAuth } from "../../contexts/AuthContext";
 
 // Components
@@ -93,45 +89,27 @@ const ProfileTab = () => {
 
   const handleProfileUpdate = async (formData) => {
     try {
-      let updatedData = { ...formData };
-      // --- FILE UPLOADS ---
-      if (formData.profile_photo_file instanceof File) {
-        const photoUrl = await uploadProfilePicture(
-          formData.profile_photo_file,
-        );
-        updatedData.profile_photo_url = photoUrl;
-      }
+      setLoading(true);
+      // 1. Use FormData instead of a plain object
+      const data = new FormData();
 
-      if (formData.cv_file instanceof File) {
-        const cvUrl = await uploadCV(formData.cv_file);
-        updatedData.cv_url = cvUrl;
-      }
-
-      // --- CLEANUP ---
-      // 1. Remove file objects
-      delete updatedData.profile_photo_file;
-      delete updatedData.cv_file;
-      // Remove Metadata fields that backend doesn't need
-      delete updatedData.id; // remove id
-      delete updatedData.created_at; // remove timestamp
-      delete updatedData.updated_at; // remove timestamp
-      // Handle empty strings
-      Object.keys(updatedData).forEach((key) => {
-        if (updatedData[key] === "") {
-          updatedData[key] = null;
+      Object.keys(formData).forEach((key) => {
+        // Append everything (text fields and File objects)
+        if (formData[key] !== null && formData[key] !== undefined) {
+          data.append(key, formData[key]);
         }
       });
 
-      await profileService.updateProfile(updatedData);
+      // 2. Pass the FormData to the service
+      await profileService.updateProfile(data);
 
       await fetchData();
       setIsProfileModalOpen(false);
-      setError(null);
     } catch (err) {
-      console.error("Full Error Object:", err);
-      const serverMessage =
-        err.response?.data?.error || "Failed to update profile";
-      setError(serverMessage);
+      console.error("Update error:", err);
+      setError("Failed to update profile");
+    } finally {
+      setLoading(false);
     }
   };
 

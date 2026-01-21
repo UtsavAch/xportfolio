@@ -86,12 +86,8 @@ const CmsOverlay = ({
                 <Input
                   id={field.name}
                   type={field.type || "text"}
-                  // Don't bind "value" for file inputs to avoid browser errors
-                  value={
-                    field.type === "file"
-                      ? undefined
-                      : formData[field.name] || ""
-                  }
+                  // You can still pass formData value, our Input component will now safely ignore it if type="file"
+                  value={formData[field.name] || ""}
                   onChange={(e) =>
                     handleChange(field.name, e.target.value, e.target.files)
                   }

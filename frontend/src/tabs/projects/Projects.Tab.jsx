@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { UilCodeBranch } from "@iconscout/react-unicons";
 
 import { useAuth } from "../../contexts/AuthContext";
-import projectsService from "../../management/services/projectsService";
+import projectsService from "../../services/projectsService";
 import Card from "../../components/card/Card.Component";
 import TabWrapper from "../../components/tabwrapper/TabWrapper.Component";
 import CmsOverlay from "../../components/cmsoverlay/CmsOverlay.component";

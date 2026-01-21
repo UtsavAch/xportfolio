@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import { UilGraduationCap, UilBookOpen } from "@iconscout/react-unicons";
 
 import { useAuth } from "../../contexts/AuthContext";
-import educationService from "../../management/services/educationService";
-import coursesService from "../../management/services/coursesService";
+import educationService from "../../services/projectsService";
+import coursesService from "../../services/projectsService";
 import Card from "../../components/card/Card.Component";
 import TabWrapper from "../../components/tabwrapper/TabWrapper.Component";
 import CmsOverlay from "../../components/cmsoverlay/CmsOverlay.component";

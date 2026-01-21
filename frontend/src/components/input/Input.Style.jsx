@@ -22,8 +22,13 @@ export const InputWrapper = styled.div`
 
 export const StyledInput = styled.input`
   width: 100%;
-  /* If icon exists, add padding-left, else standard padding */
-  padding: 14px 14px 14px ${(props) => (props.$hasIcon ? "45px" : "14px")};
+  padding: ${(props) =>
+    props.type === "file"
+      ? "10px"
+      : props.$hasIcon
+        ? "14px 14px 14px 45px"
+        : "14px"};
+
   background-color: var(--color-card-bg);
   border: 1px solid var(--color-input-border);
   border-radius: var(--radius);
@@ -42,6 +47,22 @@ export const StyledInput = styled.input`
     outline: none;
     border-color: var(--color-highlight);
     box-shadow: 0 0 0 1px var(--color-highlight);
+  }
+
+  &::file-selector-button {
+    background-color: var(--color-input-border);
+    color: var(--color-text);
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  &::file-selector-button:hover {
+    background-color: var(--color-highlight);
+    color: var(--color-bg);
   }
 `;
 

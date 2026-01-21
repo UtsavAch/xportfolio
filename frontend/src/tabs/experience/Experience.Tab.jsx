@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { UilBriefcaseAlt } from "@iconscout/react-unicons";
 
 import { useAuth } from "../../contexts/AuthContext";
-import experienceService from "../../management/services/experienceService";
+import experienceService from "../../services/projectsService";
 import Card from "../../components/card/Card.Component";
 import TabWrapper from "../../components/tabwrapper/TabWrapper.Component";
 import CmsOverlay from "../../components/cmsoverlay/CmsOverlay.component";

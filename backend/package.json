@@ -13,11 +13,13 @@
     "migrate:down": "node-pg-migrate down"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.91.0",
     "cors": "^2.8.5",
     "dotenv": "^16.6.1",
     "express": "^4.19.2",
     "joi": "^18.0.0",
     "jsonwebtoken": "^9.0.2",
+    "multer": "^2.0.2",
     "node-pg-migrate": "^8.0.4",
     "nodemon": "^3.1.10",
     "pg": "^8.12.0",
