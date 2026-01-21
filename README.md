@@ -1,0 +1,1 @@
+Personal portfolio management website. It is a full stack web application with content management features (CMS - only owner). We can manage our personal informations, upload CV and profile picture, manage education, experiences and projects.

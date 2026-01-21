@@ -232,7 +232,7 @@ const EducationTab = () => {
             key={course.id}
             title={course.title}
             meta={`${formatDate(course.start_date)} – ${formatDate(course.end_date)}`}
-            links={{ url: course.url }}
+            links={{ url: course.link }}
             description={course.description}
             extra={
               <ActionGroup $gap="15px">
