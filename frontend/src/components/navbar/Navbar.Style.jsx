@@ -6,6 +6,13 @@ export const NavContainer = styled.nav`
   align-items: center;
   background-color: var(--color-card-bg);
   border-radius: 12px;
+
+  position: sticky;
+  top: 0px; /* Distance from top of screen when scrolling */
+  z-index: 1000; /* Ensures it floats above all other content */
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
   margin: 20px auto;
   box-sizing: border-box;
   width: fit-content;
@@ -48,7 +55,7 @@ export const NavItem = styled.button`
   /* Ultra-small screens (< 350px) */
   padding: 6px 8px;
   font-size: 0.75rem;
-  letter-spacing: -0.2px; /* Tighten text slightly to save space */
+  letter-spacing: -0.2px;
 
   /* Standard Mobile (> 350px) */
   @media (min-width: 350px) {
