@@ -8,10 +8,10 @@ export const NavContainer = styled.nav`
   border-radius: 12px;
 
   position: sticky;
-  top: 0px; /* Distance from top of screen when scrolling */
+  top: 20px; /* Distance from top of screen when scrolling */
   z-index: 1000; /* Ensures it floats above all other content */
   backdrop-filter: blur(10px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 -30px 6px rgba(0, 0, 0, 0.7);
 
   margin: 20px auto;
   box-sizing: border-box;
@@ -23,7 +23,7 @@ export const NavContainer = styled.nav`
   padding: 4px;
 
   /* Standard Mobile (> 350px) */
-  @media (min-width: 350px) {
+  @media (min-width: 400px) {
     gap: 8px;
     padding: 6px;
   }
