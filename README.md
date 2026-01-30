@@ -165,7 +165,7 @@ REACT_APP_API_URL=<backend-api-url>
 
 ## CMS View
 
-![Project Page Screenshot – CMS View](./docs/images/projectpage.png)
+![Project Page Screenshot – CMS View](./docs/images/projectpagecms.png)
 ![CMS Form Screenshot](./docs/images/cmsform.png)
 
 ---
